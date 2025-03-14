@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c42d108ca0b329b499f2ff74afeca641
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/ScopeRedDot.prefab
+  uploadId: 701518

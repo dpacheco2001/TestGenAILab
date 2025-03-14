@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8e6416e07b49a3b408f1e28f76181c7e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/ShellEmpty.prefab
+  uploadId: 701518

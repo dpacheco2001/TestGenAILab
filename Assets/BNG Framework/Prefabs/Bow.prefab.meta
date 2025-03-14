@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3b3a577d35f83cd479e4139b02c51002
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Bow.prefab
+  uploadId: 701518

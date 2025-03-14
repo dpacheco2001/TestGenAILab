@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7665de532a1c8fc488c05b10a6f53d74
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/EmptyCasing.prefab
+  uploadId: 701518

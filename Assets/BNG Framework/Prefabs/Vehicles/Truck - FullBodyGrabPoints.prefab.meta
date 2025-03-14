@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e51864961aac59449abdc7551c6b9ddf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Vehicles/Truck - FullBodyGrabPoints.prefab
+  uploadId: 701518

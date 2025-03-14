@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 67ac3bb111792a44e8d5de9a1bf09c6a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scenes/Arm Locomotion.unity
+  uploadId: 701518

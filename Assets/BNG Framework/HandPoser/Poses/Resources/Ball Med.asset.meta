@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 462b38d8f05558c41bf157a0b17c8c5d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/Ball Med.asset
+  uploadId: 701518

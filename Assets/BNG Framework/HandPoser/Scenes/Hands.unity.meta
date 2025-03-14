@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a3b8fb853071ae24796720856c207a3a
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Scenes/Hands.unity
+  uploadId: 701518

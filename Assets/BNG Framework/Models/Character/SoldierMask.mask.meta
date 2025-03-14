@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f9e93c21879d8634e83996653772b4d0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 31900000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/SoldierMask.mask
+  uploadId: 701518

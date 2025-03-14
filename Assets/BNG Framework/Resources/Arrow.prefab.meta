@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 52b718212df4c8644a4741e99aefc97d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Resources/Arrow.prefab
+  uploadId: 701518

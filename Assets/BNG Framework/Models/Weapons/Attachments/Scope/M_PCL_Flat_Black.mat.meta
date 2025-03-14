@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 13745b3d3a3d0fb4d98c848b231056a1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Attachments/Scope/M_PCL_Flat_Black.mat
+  uploadId: 701518

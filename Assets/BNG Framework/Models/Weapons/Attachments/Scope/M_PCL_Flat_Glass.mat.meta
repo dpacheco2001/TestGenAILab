@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6829956397ee8e34b9209b127a0db62a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Attachments/Scope/M_PCL_Flat_Glass.mat
+  uploadId: 701518

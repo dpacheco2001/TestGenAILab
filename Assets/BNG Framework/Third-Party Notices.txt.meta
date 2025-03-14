@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9ee60cd64d91ea14db623730244d02c1
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Third-Party Notices.txt
+  uploadId: 701518

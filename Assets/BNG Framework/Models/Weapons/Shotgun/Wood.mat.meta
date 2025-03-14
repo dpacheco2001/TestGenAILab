@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d52e59489959b05479234f067713648d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Shotgun/Wood.mat
+  uploadId: 701518

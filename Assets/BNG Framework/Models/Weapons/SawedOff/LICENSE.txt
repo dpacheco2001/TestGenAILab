@@ -1,0 +1,5 @@
+This model is Public domain, meaning you can use this model in any project (personal or commercial) without attribution.
+
+Original CC0 Model - Shotgun Sawed Off by Quaternius (https://poly.pizza/m/29FXKu7G91)
+
+Some modifications by BNG to split meshes (included .blend file)

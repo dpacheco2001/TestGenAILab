@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 582ecc2c84f00ee48a4448ac9f12229e
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/PistolHolo.prefab
+  uploadId: 701518

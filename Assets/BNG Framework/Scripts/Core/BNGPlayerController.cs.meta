@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 4688ae0e7d3f7c7498dd85852dfd2622
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Core/BNGPlayerController.cs
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b41ac38c6f5008847a63b626f75befd5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/SteeringWheelLeverSetup.prefab
+  uploadId: 701518

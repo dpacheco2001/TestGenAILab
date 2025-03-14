@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e6f02c0f27bf2148b77eac9a7236d82
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/SawedOff/LICENSE.txt
+  uploadId: 701518

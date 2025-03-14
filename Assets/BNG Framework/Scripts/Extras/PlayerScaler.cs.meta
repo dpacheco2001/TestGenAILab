@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 2b1af6f3d27f655418d9c6cad24c6510
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Extras/PlayerScaler.cs
+  uploadId: 701518

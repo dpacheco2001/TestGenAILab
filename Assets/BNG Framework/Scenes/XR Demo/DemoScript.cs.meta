@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0d86c507df3f6f742bd91539b44f3aa0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scenes/XR Demo/DemoScript.cs
+  uploadId: 701518

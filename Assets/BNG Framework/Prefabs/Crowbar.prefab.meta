@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d1403a4ac31b4464e9582f7faaf31deb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Crowbar.prefab
+  uploadId: 701518

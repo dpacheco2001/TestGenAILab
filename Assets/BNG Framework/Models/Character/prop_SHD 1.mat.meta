@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a7bff1968bf82f04199997ed51e8f9b0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/prop_SHD 1.mat
+  uploadId: 701518

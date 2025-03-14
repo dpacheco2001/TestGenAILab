@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b2defb85b986ab243a8c5252fe34a93a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Pistol.prefab
+  uploadId: 701518

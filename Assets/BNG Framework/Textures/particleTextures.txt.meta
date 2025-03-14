@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 63faeac5909bd014e8f3c29edab302ae
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Textures/particleTextures.txt
+  uploadId: 701518

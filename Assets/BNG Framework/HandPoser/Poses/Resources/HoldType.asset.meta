@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b67209d6bb68afb43b86a98118cc77ba
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/HoldType.asset
+  uploadId: 701518

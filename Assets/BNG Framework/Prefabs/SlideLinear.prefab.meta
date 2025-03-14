@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 57b8fcc0f78c5f445812e14f51f33fa7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/SlideLinear.prefab
+  uploadId: 701518

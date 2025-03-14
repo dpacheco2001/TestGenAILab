@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9f87e785e9ac9c14bb8dc5718f4378d0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Player/XR Rig Full Body.prefab
+  uploadId: 701518

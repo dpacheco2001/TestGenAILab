@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 0e97e54343fcd4e4b81f6e22d317008a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Helpers/HandController.cs
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b6d8d2fe17aa0e845b409cde025ad27d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Knob.prefab
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9eaecb5c4f0a0f04ebc7b23a4254a2fa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/PistolClipLarge FullBody.prefab
+  uploadId: 701518

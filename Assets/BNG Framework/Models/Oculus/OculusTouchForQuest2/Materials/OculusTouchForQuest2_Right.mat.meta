@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0cd3ed1aad0963f4a8819e086ec6909f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Oculus/OculusTouchForQuest2/Materials/OculusTouchForQuest2_Right.mat
+  uploadId: 701518

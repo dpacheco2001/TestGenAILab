@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cb29b9cae0ac23342aae1bae9aabdaf4
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/SnapPoint Laser.prefab
+  uploadId: 701518

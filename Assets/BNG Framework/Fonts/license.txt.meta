@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b37020425fa5bec47a4d32dd9b5dd378
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Fonts/license.txt
+  uploadId: 701518

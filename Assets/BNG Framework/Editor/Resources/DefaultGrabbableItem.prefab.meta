@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bc9196cec5729a847af31c7bb05fea83
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Editor/Resources/DefaultGrabbableItem.prefab
+  uploadId: 701518

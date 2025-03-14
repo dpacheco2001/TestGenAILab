@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a01b3ad582e7770478afef9cc25f3862
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/Curved UI/Instructions.txt
+  uploadId: 701518

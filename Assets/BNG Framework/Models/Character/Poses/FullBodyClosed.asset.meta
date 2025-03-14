@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 965c46e1afbab684385a4961e3d95f2c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/Poses/FullBodyClosed.asset
+  uploadId: 701518

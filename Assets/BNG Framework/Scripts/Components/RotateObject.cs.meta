@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: dfeebfa79f42228429654cb8d1d65c52
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Components/RotateObject.cs
+  uploadId: 701518

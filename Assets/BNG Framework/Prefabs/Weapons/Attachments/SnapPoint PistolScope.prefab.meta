@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ce0850d50abfabb49b6d88b8c6079bd6
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/SnapPoint PistolScope.prefab
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: da276f885c66c2745b310844de99aba9
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/XR Interaction Toolkit/XRIT Example.unity
+  uploadId: 701518

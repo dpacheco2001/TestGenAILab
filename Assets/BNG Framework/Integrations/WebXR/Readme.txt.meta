@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8f8f10cd8706fd340b5a65bfd238874c
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/WebXR/Readme.txt
+  uploadId: 701518

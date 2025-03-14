@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fe2fa158a8edeb34ab169c4d3b82b4db
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Materials/Physics/Frictionless.physicMaterial
+  uploadId: 701518

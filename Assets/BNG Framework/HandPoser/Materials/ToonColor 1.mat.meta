@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 119f2e8647a429740becd98659b31f59
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Materials/ToonColor 1.mat
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2cfbb2c52977665408d462be2e42aad3
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/SteamVR/Readme.txt
+  uploadId: 701518

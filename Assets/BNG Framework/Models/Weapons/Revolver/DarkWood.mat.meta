@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 2266c71dd5bebec4c80c91d135f150c4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Revolver/DarkWood.mat
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b2f57e3152bf4624281a264791d10eb7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/RedDotLaser.prefab
+  uploadId: 701518

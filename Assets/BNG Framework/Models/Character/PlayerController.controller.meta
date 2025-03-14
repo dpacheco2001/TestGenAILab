@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5adcc5fd6e137e547bd27c98832832b5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/PlayerController.controller
+  uploadId: 701518

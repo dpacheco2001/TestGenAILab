@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ca936c6cf3a89b14a90a8a3f8cd77a9d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/Poses/FullBodyTwoFingerHold.asset
+  uploadId: 701518

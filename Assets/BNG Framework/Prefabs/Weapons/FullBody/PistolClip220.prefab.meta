@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 1723f8e8195756d478837595532621d9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/PistolClip220.prefab
+  uploadId: 701518

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 9b3b4036f401f5244bf668910c3fd80a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Resources/Robot/Robot Controller.controller
+  uploadId: 701518

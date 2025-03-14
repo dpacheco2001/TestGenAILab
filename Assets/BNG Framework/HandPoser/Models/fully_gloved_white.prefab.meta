@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a56ccdea779bc6f439a92a6be3ca1db2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Models/fully_gloved_white.prefab
+  uploadId: 701518

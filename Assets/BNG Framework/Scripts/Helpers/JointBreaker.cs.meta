@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 90e58b230f0183d46a6e0154257629b9
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Helpers/JointBreaker.cs
+  uploadId: 701518

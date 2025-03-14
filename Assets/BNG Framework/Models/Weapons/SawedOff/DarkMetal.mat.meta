@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fc73927e17e70ac439f9c48d4b3bee00
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/SawedOff/DarkMetal.mat
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 4ac7df741a9c0a2418ec19477729ee3d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Player/XR Rig Advanced.prefab
+  uploadId: 701518

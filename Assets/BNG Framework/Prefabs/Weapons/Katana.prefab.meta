@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a7d6b8c7104034c459c257fce0277176
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Katana.prefab
+  uploadId: 701518

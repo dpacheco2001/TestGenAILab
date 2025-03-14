@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b8e4cecd09499bf468ee84a18c4f6fe7
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/ScaleBetween.prefab
+  uploadId: 701518

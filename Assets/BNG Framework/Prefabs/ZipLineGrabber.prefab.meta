@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 13049a06e1e88ab42b7949927a970b75
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/ZipLineGrabber.prefab
+  uploadId: 701518

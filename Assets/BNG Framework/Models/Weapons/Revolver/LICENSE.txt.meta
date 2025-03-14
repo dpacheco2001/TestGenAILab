@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 947aa255e91c05f42b8d6729ffa0e8da
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Revolver/LICENSE.txt
+  uploadId: 701518

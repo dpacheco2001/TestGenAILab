@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7f8ae102cf89a2d4c89ac2597e63d8ee
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Sawed Off.prefab
+  uploadId: 701518

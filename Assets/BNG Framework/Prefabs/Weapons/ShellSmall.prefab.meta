@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 313980b59a46d8945acdbfeb27027e6f
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/ShellSmall.prefab
+  uploadId: 701518

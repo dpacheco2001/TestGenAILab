@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cf8b8b518b76c5e439cfc84447d9195d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Missile Launcher.prefab
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 20abffae0ea5004438fe0e95b6627841
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scenes/Quest Demo.unity
+  uploadId: 701518

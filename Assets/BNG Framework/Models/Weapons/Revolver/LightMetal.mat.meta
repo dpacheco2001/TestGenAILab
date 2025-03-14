@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 274530f16a8c3c043a141b5115240f0c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Revolver/LightMetal.mat
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: dc03a465cabc90746a8ab420688757d1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Player/XR Rig Barebones.prefab
+  uploadId: 701518

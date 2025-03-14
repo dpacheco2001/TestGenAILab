@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d29b02de1b5f87e40a985e8b62fd86b9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/PistolAutomatic Variant.prefab
+  uploadId: 701518

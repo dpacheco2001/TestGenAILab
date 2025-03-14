@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 2c8749612dd1d9542aecb3bbb4aa6470
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Lever A.prefab
+  uploadId: 701518

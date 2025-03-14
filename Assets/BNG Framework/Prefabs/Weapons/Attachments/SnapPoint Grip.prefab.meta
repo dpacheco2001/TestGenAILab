@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 71c2a7836c303844f93362dae0fdb89b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/SnapPoint Grip.prefab
+  uploadId: 701518

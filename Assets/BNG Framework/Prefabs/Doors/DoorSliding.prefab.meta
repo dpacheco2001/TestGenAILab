@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f139beb457b7eba48802d58627c358a1
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Doors/DoorSliding.prefab
+  uploadId: 701518

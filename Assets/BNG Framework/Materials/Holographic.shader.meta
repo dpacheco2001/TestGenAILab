@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 1888ffc45e757e04aa52d3c8b55bf953
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Materials/Holographic.shader
+  uploadId: 701518

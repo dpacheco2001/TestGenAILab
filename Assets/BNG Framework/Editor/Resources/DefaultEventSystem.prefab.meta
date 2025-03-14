@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f36f23d9eb361b84c8e3ec3a25b28bd9
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Editor/Resources/DefaultEventSystem.prefab
+  uploadId: 701518

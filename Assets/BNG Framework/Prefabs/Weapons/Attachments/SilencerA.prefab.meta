@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b38d9ada59a12c14a88fbfd0982e61d5
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/SilencerA.prefab
+  uploadId: 701518

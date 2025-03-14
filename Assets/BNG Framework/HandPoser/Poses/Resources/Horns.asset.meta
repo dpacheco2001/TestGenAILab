@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 22d114a213faf0b41941544970bbee5b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/Horns.asset
+  uploadId: 701518

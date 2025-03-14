@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b00189018d7d41b4bbc9517243d07ce2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scenes/EmptySettings.lighting
+  uploadId: 701518

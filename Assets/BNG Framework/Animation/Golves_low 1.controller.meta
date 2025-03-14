@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 93ab405e479da3148bbf80d61f713ce4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Animation/Golves_low 1.controller
+  uploadId: 701518

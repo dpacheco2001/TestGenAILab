@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: d2055ed529b8a7442ae923704552a431
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/RifleMarksmanClip.prefab
+  uploadId: 701518

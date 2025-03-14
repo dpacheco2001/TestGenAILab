@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 49877b2c8de1d6e4ebc9ca5d8ea02d78
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: -50
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/Core/InputBridge.cs
+  uploadId: 701518

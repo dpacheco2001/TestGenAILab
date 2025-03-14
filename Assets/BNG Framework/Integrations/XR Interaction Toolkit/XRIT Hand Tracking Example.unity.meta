@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 49c82071631f3094c9d60f4f123eb6ac
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/XR Interaction Toolkit/XRIT Hand Tracking
+    Example.unity
+  uploadId: 701518

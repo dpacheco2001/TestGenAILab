@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 10c35245ad06ce54889312401eb6fb81
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Crate.prefab
+  uploadId: 701518

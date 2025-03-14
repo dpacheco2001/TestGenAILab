@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 74ecb3ce20a15d94595d759a830bc012
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Textures/Mirror Render Texture.renderTexture
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 9e139aeb48062b847b199782df14386d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Attachments/SnapPoint Silencer.prefab
+  uploadId: 701518

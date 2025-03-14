@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a0a4ef5d9860f4245b52bdd57d4d5442
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Materials/HolographicSquare.mat
+  uploadId: 701518

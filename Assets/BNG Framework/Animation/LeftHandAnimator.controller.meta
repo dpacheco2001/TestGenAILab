@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0007a89e1ba1e4c4783c68a358b96879
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Animation/LeftHandAnimator.controller
+  uploadId: 701518

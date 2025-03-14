@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 05b10709dc8df3e4c9575d8bb6be6008
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scripts/UI/VRTextInput.cs
+  uploadId: 701518

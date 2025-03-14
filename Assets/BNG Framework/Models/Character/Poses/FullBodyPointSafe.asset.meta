@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4d9e83e7c259c1443bea170e4a6fe0cc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/Poses/FullBodyPointSafe.asset
+  uploadId: 701518

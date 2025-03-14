@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 6d270bd21bb4edf449f5e94b4b08e0c8
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Hands/OculusHands/LICENSE.txt
+  uploadId: 701518

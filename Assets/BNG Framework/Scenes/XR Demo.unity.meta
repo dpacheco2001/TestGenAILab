@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a1360534006d3f845bc79b46b93cfec5
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Scenes/XR Demo.unity
+  uploadId: 701518

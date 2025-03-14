@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 68533238bc73fb04883358ac34a8fe4d
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Shotgun/LICENSE.txt
+  uploadId: 701518

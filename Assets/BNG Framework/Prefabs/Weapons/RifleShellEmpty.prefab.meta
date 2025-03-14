@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e6d6d8266008ffe438ce58f774e874fa
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/RifleShellEmpty.prefab
+  uploadId: 701518

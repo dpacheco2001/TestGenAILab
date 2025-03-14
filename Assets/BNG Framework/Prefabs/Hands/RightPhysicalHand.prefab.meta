@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c783a657a1cbcdf4fa7da5c062d7df69
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Hands/RightPhysicalHand.prefab
+  uploadId: 701518

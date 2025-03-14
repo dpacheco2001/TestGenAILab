@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ecc46461c8f4fa24a8a38952937da6da
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Hands/CustomHandLeftBlackNew.prefab
+  uploadId: 701518

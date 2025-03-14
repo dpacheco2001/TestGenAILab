@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 3daf21ca97f23784db2df819327787eb
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Models/half_gloves_white.prefab
+  uploadId: 701518

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1527067d56331134b84ce0c44d6d576f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Textures/ScopeRenderTexture.renderTexture
+  uploadId: 701518

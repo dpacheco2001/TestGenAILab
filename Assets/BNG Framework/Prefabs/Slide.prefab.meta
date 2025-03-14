@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 99f47e11765001245a11dc1219c90ca0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Slide.prefab
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a789d0b9ce34ff842880e59ef8261779
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Desk.prefab
+  uploadId: 701518

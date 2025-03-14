@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 66ba75c631bd8354892c80fe7071992b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/OnHitFX.prefab
+  uploadId: 701518

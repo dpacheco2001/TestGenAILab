@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b94738cfe8acbe42a9e0e162f81e8e4
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/Pinch Tight 2.asset
+  uploadId: 701518

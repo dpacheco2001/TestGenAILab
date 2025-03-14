@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 338b73bca5e49f146beefdccf9811a04
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/Shotgun.prefab
+  uploadId: 701518

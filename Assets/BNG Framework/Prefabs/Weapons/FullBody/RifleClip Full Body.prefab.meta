@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e375d61ad06d49f49a384d6a55ab0535
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/RifleClip Full Body.prefab
+  uploadId: 701518

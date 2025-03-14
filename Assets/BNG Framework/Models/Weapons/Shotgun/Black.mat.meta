@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 21d0588306848fd459acc23f7c4f5a8f
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Shotgun/Black.mat
+  uploadId: 701518

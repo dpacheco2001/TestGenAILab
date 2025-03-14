@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ad3253d11e5c53745af22dfd18017d77
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/PistolClip.prefab
+  uploadId: 701518

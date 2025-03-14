@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ef1a872064c3ad847a292e87a922a2a8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/MagUnderPose2.asset
+  uploadId: 701518

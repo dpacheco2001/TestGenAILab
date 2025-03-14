@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8b8746c815e84a54b800ff881a6de982
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Ball.prefab
+  uploadId: 701518

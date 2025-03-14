@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 139d0416d0914364c82279c96d0dad03
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Cylinder.asset
+  uploadId: 701518

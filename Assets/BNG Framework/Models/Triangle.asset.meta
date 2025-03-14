@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: e72031e9c4501e1488cfe3b0ba53b3d5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Triangle.asset
+  uploadId: 701518

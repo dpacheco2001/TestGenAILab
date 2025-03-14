@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6b9d3354b5c95f64290bdfdf33e52ceb
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/OK.asset
+  uploadId: 701518

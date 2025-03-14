@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bf7b8c04fcdaf6f469cd8fe88edc4d65
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/BNG_E_Orange.prefab
+  uploadId: 701518

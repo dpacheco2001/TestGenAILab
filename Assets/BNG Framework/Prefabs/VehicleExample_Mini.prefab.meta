@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: b0550f8ced5444544a791898a0382fb0
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/VehicleExample_Mini.prefab
+  uploadId: 701518

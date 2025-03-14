@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 37e02d902dca4924aa948a0bf3f1fcc0
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Editor/HandPoserEditor.cs
+  uploadId: 701518

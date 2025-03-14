@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1b17216ef36a7434f9d57d0cbbc9ceb3
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/HandPoser/Poses/Resources/Ping Pong.asset
+  uploadId: 701518

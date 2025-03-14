@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 887135ce5533ec542b7c595db63a2f5a
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Character/Soldier_Rig.prefab
+  uploadId: 701518

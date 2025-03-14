@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: dc18b0625eb78964d9e9592a7a8b30f5
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Attachments/Reflex/M_PCL_Flat_Black_Lighter.mat
+  uploadId: 701518

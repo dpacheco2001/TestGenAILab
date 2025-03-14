@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: f8313a7c0e07bba40ac0f3634a590caf
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/BulletCase.prefab
+  uploadId: 701518

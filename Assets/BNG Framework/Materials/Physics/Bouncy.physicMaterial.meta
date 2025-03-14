@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1dbe018f632a5af4394dd189671b8fb6
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 13400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Materials/Physics/Bouncy.physicMaterial
+  uploadId: 701518

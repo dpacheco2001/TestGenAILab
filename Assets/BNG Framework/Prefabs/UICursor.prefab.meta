@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: cda3e347c37ecf24e89b8cd380c7f9f2
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/UICursor.prefab
+  uploadId: 701518

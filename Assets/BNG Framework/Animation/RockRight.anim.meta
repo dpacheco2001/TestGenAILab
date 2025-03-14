@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1ae3ce468946549478008174c080e5e1
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Animation/RockRight.anim
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: e3457ff85428d2f4ca41ede9ade80d2b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/Shotgun Short.prefab
+  uploadId: 701518

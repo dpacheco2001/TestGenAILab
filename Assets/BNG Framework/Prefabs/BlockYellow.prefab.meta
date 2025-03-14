@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 0f50f6c994c01194195f0b739e15686d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/BlockYellow.prefab
+  uploadId: 701518

@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 399e81172965af247aded9307a504630
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/PingPongBall.prefab
+  uploadId: 701518

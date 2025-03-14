@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a046b7d8c4bb4a340a7efe72f6cec29a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Models/Weapons/Attachments/Reflex/M_PCL_Flat_Black.mat
+  uploadId: 701518

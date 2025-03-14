@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: bb4e233c88aefa543bb55261e86560a5
+TextScriptImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Integrations/FinalIK/Readme.txt
+  uploadId: 701518

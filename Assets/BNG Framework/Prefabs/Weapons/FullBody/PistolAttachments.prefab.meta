@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: ab72d2b3dfbcc44449ec32dc5701ba8d
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Weapons/FullBody/PistolAttachments.prefab
+  uploadId: 701518

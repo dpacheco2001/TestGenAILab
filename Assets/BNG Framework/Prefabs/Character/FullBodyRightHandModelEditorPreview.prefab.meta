@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 233fd0fac09b8ca4b982148c44519f5b
+PrefabImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161066
+  packageName: VR Interaction Framework
+  packageVersion: 3.0.4
+  assetPath: Assets/BNG Framework/Prefabs/Character/FullBodyRightHandModelEditorPreview.prefab
+  uploadId: 701518
