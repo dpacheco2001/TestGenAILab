@@ -6,7 +6,7 @@ using TMPro;
 public class MainController : MonoBehaviour {
     public AudioRecorder audioRecorder;           // Asigna desde el Inspector
     public TranscriptionManager transcriptionManager; // Asigna desde el Inspector
-    public TextMeshProUGUI transcriptionText;     // Referencia al TextMeshPro en el Canvas
+    public Text transcriptionText;     // Referencia al TextMeshPro en el Canvas
     public Button recordButton;                   // Referencia al botón de grabación
     public Image volumeIndicator;                 // Opcional: indicador visual de volumen
     

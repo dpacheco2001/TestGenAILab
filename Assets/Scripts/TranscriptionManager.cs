@@ -1,75 +1,80 @@
 using System;
-using System.Threading.Tasks;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using UnityEngine;
 using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.Networking;
 using System.IO;
 
-public class TranscriptionManager : MonoBehaviour {
-    [SerializeField] private string apiKey = ""; // Tu API key de Groq
-    [SerializeField] private string model = "whisper-large-v3-turbo";
-    [SerializeField] private string language = "es";
+public class TranscriptionManager : MonoBehaviour
+{
+    [Header("API Configuration")]
+    [SerializeField] private string groqApiKey = ""; // Introduce tu API key de Groq en el Inspector
+    [SerializeField] private string apiEndpoint = "https://api.groq.com/openai/v1/audio/transcriptions";
     
-    private readonly HttpClient httpClient = new HttpClient();
-    
-    private void Awake() {
-        // Configurar el timeout del cliente HTTP
-        httpClient.Timeout = TimeSpan.FromSeconds(30);
-    }
-    
-    public async Task<string> TranscribeAudio(byte[] audioData) {
-        if (string.IsNullOrEmpty(apiKey)) {
-            Debug.LogError("API Key no configurada");
-            return null;
-        }
-        
-        try {
-            Debug.Log($"Enviando {audioData.Length} bytes para transcripción...");
+    // Método principal que llama el MainController
+    public async Task<string> TranscribeAudio(byte[] audioData)
+    {
+        try
+        {
+            // Guarda temporalmente el archivo WAV
+            string tempWavPath = Path.Combine(Application.temporaryCachePath, "temp_recording.wav");
+            File.WriteAllBytes(tempWavPath, audioData);
             
-            // Crear el contenido multipart
-            using (var content = new MultipartFormDataContent()) {
-                // Agregar el archivo de audio
-                var audioContent = new ByteArrayContent(audioData);
-                audioContent.Headers.ContentType = new MediaTypeHeaderValue("audio/wav");
-                content.Add(audioContent, "file", "audio.wav");
+            // Crea el form para la solicitud HTTP
+            WWWForm form = new WWWForm();
+            form.AddBinaryData("file", audioData, "audio.wav", "audio/wav");
+            form.AddField("model", "whisper-large-v3");
+            form.AddField("language", "es");
+            
+            // Prepara la solicitud UnityWebRequest
+            using (UnityWebRequest www = UnityWebRequest.Post(apiEndpoint, form))
+            {
+                // Configura los headers para la API de Groq
+                www.SetRequestHeader("Authorization", "Bearer " + groqApiKey);
                 
-                // Agregar los parámetros
-                content.Add(new StringContent(model), "model");
-                content.Add(new StringContent(language), "language");
-                content.Add(new StringContent("json"), "response_format");
+                // Envía la solicitud y espera la respuesta
+                var operation = www.SendWebRequest();
+                while (!operation.isDone)
+                    await Task.Delay(10);
                 
-                // Configurar la solicitud
-                using (var request = new HttpRequestMessage(HttpMethod.Post, "https://api.groq.com/openai/v1/audio/transcriptions")) {
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
-                    request.Content = content;
-                    
-                    // Enviar la solicitud
-                    var response = await httpClient.SendAsync(request);
-                    
-                    // Verificar la respuesta
-                    if (response.IsSuccessStatusCode) {
-                        string jsonResponse = await response.Content.ReadAsStringAsync();
-                        Debug.Log($"Respuesta API: {jsonResponse}");
-                        
-                        // Parsear la respuesta JSON
-                        GroqResponse groqResponse = JsonUtility.FromJson<GroqResponse>(jsonResponse);
-                        return groqResponse.text;
-                    } else {
-                        string errorContent = await response.Content.ReadAsStringAsync();
-                        Debug.LogError($"Error en API: {response.StatusCode}, {errorContent}");
-                        return null;
-                    }
+                // Manejo de errores HTTP
+                if (www.result != UnityWebRequest.Result.Success)
+                {
+                    Debug.LogError("Error en la API: " + www.error);
+                    Debug.LogError("Respuesta: " + www.downloadHandler.text);
+                    return null;
                 }
+                
+                // Procesa la respuesta JSON
+                string jsonResponse = www.downloadHandler.text;
+                Debug.Log("Respuesta API: " + jsonResponse);
+                
+                // Extrae el texto de la transcripción del JSON
+                // Formato esperado: {"text":"la transcripción aquí"}
+                TranscriptionResponse response = JsonUtility.FromJson<TranscriptionResponse>(jsonResponse);
+                return response.text;
             }
-        } catch (Exception ex) {
-            Debug.LogError($"Error en la transcripción: {ex.Message}");
+        }
+        catch (Exception e)
+        {
+            Debug.LogError("Error en la transcripción: " + e.Message);
             return null;
         }
+        finally
+        {
+            // Limpia archivo temporal
+            string tempWavPath = Path.Combine(Application.temporaryCachePath, "temp_recording.wav");
+            if (File.Exists(tempWavPath))
+            {
+                File.Delete(tempWavPath);
+            }
+        }
     }
-}
-
-[Serializable]
-public class GroqResponse {
-    public string text;
+    
+    // Clase para deserializar la respuesta JSON
+    [Serializable]
+    private class TranscriptionResponse
+    {
+        public string text;
+    }
 }
