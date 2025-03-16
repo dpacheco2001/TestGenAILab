@@ -646,6 +646,7 @@ GameObject:
   - component: {fileID: 1953278937}
   - component: {fileID: 1953278940}
   - component: {fileID: 1953278941}
+  - component: {fileID: 1953278942}
   m_Layer: 0
   m_Name: 'ManagerObject '
   m_TagString: Untagged
@@ -700,6 +701,9 @@ MonoBehaviour:
   recordedClip: {fileID: 0}
   sampleRate: 16000
   maxRecordingTime: 30
+  useVoiceDetection: 1
+  voiceThreshold: 0.02
+  autoStopSilenceTime: 1.5
 --- !u!114 &1953278941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -714,6 +718,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groqApiKey: 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
   apiEndpoint: https://api.groq.com/openai/v1/audio/transcriptions
+--- !u!114 &1953278942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953278936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dba3cb9b3755254594ef9de2a0a07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127149986
 GameObject:
   m_ObjectHideFlags: 0
