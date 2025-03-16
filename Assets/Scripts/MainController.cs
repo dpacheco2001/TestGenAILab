@@ -13,36 +13,76 @@ public class MainController : MonoBehaviour {
     private bool isRecording = false;
 
     void Start() {
-        // Configura la acción del botón
-        recordButton.onClick.AddListener(ToggleRecording);
+        // Verify component references
+        if (transcriptionManager == null)
+        {
+            Debug.LogError("TranscriptionManager reference not set. Please assign in Inspector.");
+        }
         
-        // Inicializar texto
+        if (audioRecorder == null)
+        {
+            Debug.LogError("AudioRecorder reference not set. Please assign in Inspector.");
+        }
+        
         if (transcriptionText != null) {
             transcriptionText.text = "Presiona el botón para grabar";
+        }
+        
+        // Make sure the button is connected to the ToggleRecording method
+        if (recordButton != null)
+        {
+            recordButton.onClick.AddListener(ToggleRecording);
+        }
+        else
+        {
+            Debug.LogError("Record button reference not set. Please assign in Inspector.");
         }
     }
 
     async void ToggleRecording() {
         if (!isRecording) {
             // Inicia grabación
-            audioRecorder.StartRecording();
-            recordButton.GetComponentInChildren<TextMeshProUGUI>().text = "Detener Grabación";
+            if (audioRecorder != null) {
+                audioRecorder.StartRecording();
+            }
+            
+            if (recordButton != null) {
+                TextMeshProUGUI buttonText = recordButton.GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null) {
+                    buttonText.text = "Detener Grabación";
+                }
+            }
+            
             if (transcriptionText != null) {
                 transcriptionText.text = "Grabando...";
             }
+            
             isRecording = true;
         } else {
             // Detiene grabación
-            audioRecorder.StopRecording();
-            recordButton.GetComponentInChildren<TextMeshProUGUI>().text = "Iniciar Grabación";
+            if (audioRecorder != null) {
+                audioRecorder.StopRecording();
+            }
+            
+            if (recordButton != null) {
+                TextMeshProUGUI buttonText = recordButton.GetComponentInChildren<TextMeshProUGUI>();
+                if (buttonText != null) {
+                    buttonText.text = "Iniciar Grabación";
+                }
+            }
+            
             isRecording = false;
             
             if (transcriptionText != null) {
                 transcriptionText.text = "Procesando transcripción...";
             }
 
+            // Start measuring time
+            System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
+            stopwatch.Start();
+
             // Obtiene los datos de audio y envía a transcripción
-            byte[] wavData = audioRecorder.GetWavData();
+            byte[] wavData = audioRecorder != null ? audioRecorder.GetWavData() : null;
             if (wavData == null || wavData.Length == 0) {
                 if (transcriptionText != null) {
                     transcriptionText.text = "Error: No se pudo obtener audio";
@@ -50,11 +90,29 @@ public class MainController : MonoBehaviour {
                 return;
             }
             
+            // Check if transcriptionManager is available
+            if (transcriptionManager == null)
+            {
+                Debug.LogError("TranscriptionManager reference is null");
+                if (transcriptionText != null)
+                {
+                    transcriptionText.text = "Error: TranscriptionManager no configurado";
+                }
+                return;
+            }
+            
             string transcription = await transcriptionManager.TranscribeAudio(wavData);
-            if (!string.IsNullOrEmpty(transcription)) {
-                transcriptionText.text = transcription;
-            } else {
-                transcriptionText.text = "Error en la transcripción";
+            
+            // Stop measuring time
+            stopwatch.Stop();
+            float elapsedSeconds = stopwatch.ElapsedMilliseconds / 1000f;
+            
+            if (transcriptionText != null) {
+                if (!string.IsNullOrEmpty(transcription)) {
+                    transcriptionText.text = transcription + $"\n\nTiempo de procesamiento: {elapsedSeconds:F2} segundos";
+                } else {
+                    transcriptionText.text = "Error en la transcripción";
+                }
             }
         }
     }
