@@ -478,6 +478,8 @@ GameObject:
   - component: {fileID: 1953278941}
   - component: {fileID: 1953278940}
   - component: {fileID: 1953278939}
+  - component: {fileID: 1953278942}
+  - component: {fileID: 1953278943}
   m_Layer: 0
   m_Name: 'ManagerObject '
   m_TagString: Untagged
@@ -549,6 +551,43 @@ MonoBehaviour:
   useVoiceDetection: 1
   voiceThreshold: 0.02
   autoStopSilenceTime: 1.5
+--- !u!114 &1953278942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953278936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6529ca06497f4a48a7219729f24bdd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: sk_060b722156b8f4e269411520928a5530c22f46f73fd32329
+  voiceID: 94zOad0g7T7K4oa7zhDq
+  modelID: eleven_flash_v2_5
+  textToSpeak: "Hola que tal me llamo Mateo y hoy ser\xE9 tu asistente para este
+    laboratorio"
+--- !u!114 &1953278943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953278936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07141e2b5b9d75b428b1cc9000cc3c49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  apiKey: sk_car_ehFy6LbHBOHcFVPazS7Ps
+  modelId: sonic-2
+  voiceId: 79743797-2087-422f-8dc7-86f9efca85f1
+  language: es
+  textToSpeak: "Hola que tal me llamo Mateo y hoy ser\xE9 tu asistente para este
+    laboratorio"
+  bitRate: 128000
+  sampleRate: 44100
 --- !u!1 &2127149986
 GameObject:
   m_ObjectHideFlags: 0
