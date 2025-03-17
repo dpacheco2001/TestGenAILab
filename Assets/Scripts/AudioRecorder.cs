@@ -42,11 +42,8 @@ public class AudioRecorder : MonoBehaviour {
             else if (hasDetectedVoice) {
                 silenceTimer += Time.deltaTime;
                 
-                // Auto-stop after silence threshold
-                if (silenceTimer >= autoStopSilenceTime) {
-                    Debug.Log($"Auto-stopping after {autoStopSilenceTime}s of silence");
-                    StopRecording();
-                }
+                // Auto-stop code removed as requested
+                // The recording will now only stop when StopRecording() is manually called
             }
         }
     }
