@@ -1,96 +1,145 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.XR;
 
-public class MainController : MonoBehaviour {
-    public AudioRecorder audioRecorder;           // Asigna desde el Inspector
-    public TranscriptionManager transcriptionManager; // Asigna desde el Inspector
-    public Text transcriptionText;     // Referencia al TextMeshPro en el Canvas
-    public Button recordButton;                   // Referencia al botón de grabación
-    public Image volumeIndicator;                 // Opcional: indicador visual de volumen
-    
+public class MainController : MonoBehaviour
+{
+    public AudioRecorder audioRecorder;               // Asigna desde el Inspector
+    public TranscriptionManager transcriptionManager;   // Asigna desde el Inspector
+    public Text transcriptionText;                      // Referencia al TextMeshPro en el Canvas
+    public Button recordButton;                         // Referencia al botón de grabación (modo no-VR, opcional)
+    public Image volumeIndicator;                       // Opcional: indicador visual de volumen
+
+    [Header("VR Settings")]
+    [SerializeField] private bool enableVRInput = true;
+    [SerializeField] private InputDeviceCharacteristics controllerCharacteristics = 
+        InputDeviceCharacteristics.Right | InputDeviceCharacteristics.Controller;
+    [SerializeField] private bool useSecondaryButton = false;  // True para botón B/Y, False para botón A/X
+
     private bool isRecording = false;
+    private InputDevice targetController;
+    private bool wasPressed = false;
 
-    void Start() {
-        // Verify component references
+    void Start()
+    {
+        // Verifica las referencias asignadas
         if (transcriptionManager == null)
         {
             Debug.LogError("TranscriptionManager reference not set. Please assign in Inspector.");
         }
-        
+
         if (audioRecorder == null)
         {
             Debug.LogError("AudioRecorder reference not set. Please assign in Inspector.");
         }
-        
-        if (transcriptionText != null) {
+
+        if (transcriptionText != null)
+        {
             transcriptionText.text = "Presiona el botón para grabar";
         }
-        
-        // Make sure the button is connected to the ToggleRecording method
+
+        // Si usas el botón UI (modo no-VR), se añade el listener
         if (recordButton != null)
         {
             recordButton.onClick.AddListener(ToggleRecording);
         }
         else
         {
-            Debug.LogError("Record button reference not set. Please assign in Inspector.");
+            Debug.LogWarning("Record button reference not set. Using VR controller input only.");
+        }
+
+        // Inicializa el controlador VR si está habilitado
+        if (enableVRInput)
+        {
+            TryInitializeController();
         }
     }
 
-    async void ToggleRecording() {
-        if (!isRecording) {
+    void TryInitializeController()
+    {
+        List<InputDevice> devices = new List<InputDevice>();
+        InputDevices.GetDevicesWithCharacteristics(controllerCharacteristics, devices);
+
+        if (devices.Count > 0)
+        {
+            targetController = devices[0];
+            Debug.Log($"Target controller found: {targetController.name}");
+        }
+        else
+        {
+            Debug.LogWarning("Target controller not found. Will try again in Update.");
+        }
+    }
+
+    async void ToggleRecording()
+    {
+        if (!isRecording)
+        {
             // Inicia grabación
-            if (audioRecorder != null) {
+            if (audioRecorder != null)
+            {
                 audioRecorder.StartRecording();
             }
-            
-            if (recordButton != null) {
+
+            // Si se usa UI, actualiza el texto del botón
+            if (recordButton != null)
+            {
                 TextMeshProUGUI buttonText = recordButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null) {
+                if (buttonText != null)
+                {
                     buttonText.text = "Detener Grabación";
                 }
             }
-            
-            if (transcriptionText != null) {
+
+            if (transcriptionText != null)
+            {
                 transcriptionText.text = "Grabando...";
             }
-            
+
             isRecording = true;
-        } else {
+        }
+        else
+        {
             // Detiene grabación
-            if (audioRecorder != null) {
+            if (audioRecorder != null)
+            {
                 audioRecorder.StopRecording();
             }
-            
-            if (recordButton != null) {
+
+            if (recordButton != null)
+            {
                 TextMeshProUGUI buttonText = recordButton.GetComponentInChildren<TextMeshProUGUI>();
-                if (buttonText != null) {
+                if (buttonText != null)
+                {
                     buttonText.text = "Iniciar Grabación";
                 }
             }
-            
+
             isRecording = false;
-            
-            if (transcriptionText != null) {
+
+            if (transcriptionText != null)
+            {
                 transcriptionText.text = "Procesando transcripción...";
             }
 
-            // Start measuring time
+            // Mide el tiempo de procesamiento
             System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
             stopwatch.Start();
 
-            // Obtiene los datos de audio y envía a transcripción
+            // Obtiene los datos de audio y los envía a transcripción
             byte[] wavData = audioRecorder != null ? audioRecorder.GetWavData() : null;
-            if (wavData == null || wavData.Length == 0) {
-                if (transcriptionText != null) {
+            if (wavData == null || wavData.Length == 0)
+            {
+                if (transcriptionText != null)
+                {
                     transcriptionText.text = "Error: No se pudo obtener audio";
                 }
                 return;
             }
-            
-            // Check if transcriptionManager is available
+
             if (transcriptionManager == null)
             {
                 Debug.LogError("TranscriptionManager reference is null");
@@ -100,34 +149,73 @@ public class MainController : MonoBehaviour {
                 }
                 return;
             }
-            
+
             string transcription = await transcriptionManager.TranscribeAudio(wavData);
-            
-            // Stop measuring time
+
+            // Detiene el cronómetro
             stopwatch.Stop();
             float elapsedSeconds = stopwatch.ElapsedMilliseconds / 1000f;
-            
-            if (transcriptionText != null) {
-                if (!string.IsNullOrEmpty(transcription)) {
+
+            if (transcriptionText != null)
+            {
+                if (!string.IsNullOrEmpty(transcription))
+                {
                     transcriptionText.text = transcription + $"\n\nTiempo de procesamiento: {elapsedSeconds:F2} segundos";
-                } else {
+                }
+                else
+                {
                     transcriptionText.text = "Error en la transcripción";
                 }
             }
         }
     }
-    
-    void Update() {
-        // Actualizar indicador de volumen si está grabando
-        if (isRecording && volumeIndicator != null) {
-            float audioLevel = audioRecorder.GetCurrentAudioLevel();
-            volumeIndicator.fillAmount = Mathf.Lerp(volumeIndicator.fillAmount, 
-                                                  Mathf.Clamp01(audioLevel * 5), 
-                                                  Time.deltaTime * 10f);
+
+    void Update()
+    {
+        // Procesa la entrada del controlador VR
+        if (enableVRInput)
+        {
+            // Si el controlador no está inicializado, intenta de nuevo
+            if (!targetController.isValid)
+            {
+                TryInitializeController();
+                return;
+            }
+
+            bool primaryButtonPressed = false;
+            bool secondaryButtonPressed = false;
+
+            // Obtiene el estado de los botones
+            targetController.TryGetFeatureValue(CommonUsages.primaryButton, out primaryButtonPressed);
+            targetController.TryGetFeatureValue(CommonUsages.secondaryButton, out secondaryButtonPressed);
+
+            // Selecciona el botón según la configuración (A/X o B/Y)
+            bool buttonPressed = useSecondaryButton ? secondaryButtonPressed : primaryButtonPressed;
+
+            // Evita múltiples activaciones con la misma pulsación
+            if (buttonPressed && !wasPressed)
+            {
+                wasPressed = true;
+                ToggleRecording();
+            }
+            else if (!buttonPressed && wasPressed)
+            {
+                wasPressed = false;
+            }
         }
-        
-        // Opcional: permitir grabación con tecla (como en el código Python)
-        if (Input.GetKeyDown(KeyCode.R)) {
+
+        // Actualiza el indicador de volumen mientras se graba
+        if (isRecording && volumeIndicator != null)
+        {
+            float audioLevel = audioRecorder.GetCurrentAudioLevel();
+            volumeIndicator.fillAmount = Mathf.Lerp(volumeIndicator.fillAmount,
+                                                    Mathf.Clamp01(audioLevel * 5),
+                                                    Time.deltaTime * 10f);
+        }
+
+        // Opcional: permitir grabación con la tecla R (modo no-VR)
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             ToggleRecording();
         }
     }

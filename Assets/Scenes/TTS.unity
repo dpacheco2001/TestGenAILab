@@ -135,7 +135,7 @@ PrefabInstance:
     - target: {fileID: 2683195716791022644, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
@@ -539,6 +539,9 @@ MonoBehaviour:
   transcriptionText: {fileID: 2127149989}
   recordButton: {fileID: 1726907095587499088}
   volumeIndicator: {fileID: 0}
+  enableVRInput: 1
+  controllerCharacteristics: 576
+  useSecondaryButton: 0
 --- !u!114 &1953278941
 MonoBehaviour:
   m_ObjectHideFlags: 0
