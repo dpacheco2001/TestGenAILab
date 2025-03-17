@@ -8,7 +8,7 @@ using System.IO;
 public class TranscriptionManager : MonoBehaviour
 {
     [Header("API Configuration")]
-    [SerializeField] private string groqApiKey = ""; // Introduce tu API key de Groq en el Inspector
+    [SerializeField] private string groqApiKey = "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"; // Introduce tu API key de Groq en el Inspector
     [SerializeField] private string apiEndpoint = "https://api.groq.com/openai/v1/audio/transcriptions";
     
     // Método principal que llama el MainController
