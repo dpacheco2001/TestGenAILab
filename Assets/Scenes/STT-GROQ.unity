@@ -475,10 +475,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1953278938}
-  - component: {fileID: 1953278937}
-  - component: {fileID: 1953278940}
   - component: {fileID: 1953278941}
-  - component: {fileID: 1953278942}
+  - component: {fileID: 1953278940}
+  - component: {fileID: 1953278939}
   m_Layer: 0
   m_Name: 'ManagerObject '
   m_TagString: Untagged
@@ -486,23 +485,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1953278937
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953278936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcafe70c26c8582409076dbdbb626bad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioRecorder: {fileID: 1953278940}
-  transcriptionManager: {fileID: 1953278941}
-  transcriptionText: {fileID: 2127149989}
-  recordButton: {fileID: 1726907095587499088}
-  volumeIndicator: {fileID: 0}
 --- !u!4 &1953278938
 Transform:
   m_ObjectHideFlags: 0
@@ -518,6 +500,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1953278939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953278936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 464d89592e8aba94d8f12fada6090be5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  groqApiKey: 
+  apiEndpoint: https://api.groq.com/openai/v1/audio/transcriptions
 --- !u!114 &1953278940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,15 +523,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953278936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce672269dc635be41a5ed192a9c8c0db, type: 3}
+  m_Script: {fileID: 11500000, guid: aa342a5fc34b3a04e85e3f2a8d47122e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  recordedClip: {fileID: 0}
-  sampleRate: 16000
-  maxRecordingTime: 30
-  useVoiceDetection: 1
-  voiceThreshold: 0.02
-  autoStopSilenceTime: 1.5
+  audioRecorder: {fileID: 1953278941}
+  transcriptionManager: {fileID: 1953278939}
+  transcriptionText: {fileID: 2127149989}
+  recordButton: {fileID: 1726907095587499088}
+  volumeIndicator: {fileID: 0}
 --- !u!114 &1953278941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,23 +540,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1953278936}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b50cb6a39a7e4e845a3aa478175d5415, type: 3}
+  m_Script: {fileID: 11500000, guid: d3ea9ef156489bb44b2daf29fd007690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groqApiKey: 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
-  apiEndpoint: https://api.groq.com/openai/v1/audio/transcriptions
---- !u!114 &1953278942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953278936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dba3cb9b3755254594ef9de2a0a07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  recordedClip: {fileID: 0}
+  sampleRate: 16000
+  maxRecordingTime: 30
+  useVoiceDetection: 1
+  voiceThreshold: 0.02
+  autoStopSilenceTime: 1.5
 --- !u!1 &2127149986
 GameObject:
   m_ObjectHideFlags: 0
