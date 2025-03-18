@@ -10,10 +10,16 @@ public class ElevenLabsTTS : MonoBehaviour
     [SerializeField] private string apiKey = "sk_060b722156b8f4e269411520928a5530c22f46f73fd32329";
     [SerializeField] private string voiceID = "94zOad0g7T7K4oa7zhDq";
     [SerializeField] private string modelID = "eleven_flash_v2_5";
-    [SerializeField] private string textToSpeak = "Hola que tal me llamo Mateo y hoy seré tu asistente para este laboratorio";
+    [SerializeField] public string textToSpeak = "Hola que tal me llamo Mateo y hoy seré tu asistente para este laboratorio";
     
     // Reference to an AudioSource component to play the audio
     private AudioSource audioSource;
+    
+    // Event to notify when speech generation is complete
+    public event Action OnSpeechComplete;
+    
+    // Is speech currently being generated or played
+    public bool IsSpeaking { get; private set; }
 
     void Start()
     {
@@ -22,12 +28,12 @@ public class ElevenLabsTTS : MonoBehaviour
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
             
-        Debug.Log("ElevenLabsTTS initialized. Press SPACEBAR to generate speech.");
+        Debug.Log("ElevenLabsTTS initialized.");
     }
     
     void Update()
     {
-        // Press spacebar to generate speech
+        // We can keep this for testing purposes
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Generating speech...");
@@ -38,6 +44,13 @@ public class ElevenLabsTTS : MonoBehaviour
     public void GenerateAndPlaySpeech()
     {
         StartCoroutine(GetTTS());
+    }
+    
+    // New method to set text and generate speech in one call
+    public void SpeakText(string text)
+    {
+        textToSpeak = text;
+        GenerateAndPlaySpeech();
     }
 
     private IEnumerator GetTTS()
@@ -51,6 +64,7 @@ public class ElevenLabsTTS : MonoBehaviour
             $"\"model_id\": \"{modelID}\"" +
         "}";
 
+        IsSpeaking = true;
         Debug.Log("Sending request to ElevenLabs...");
         
         // Create web request
@@ -70,6 +84,8 @@ public class ElevenLabsTTS : MonoBehaviour
             {
                 Debug.LogError($"Error: {www.error}");
                 Debug.LogError($"Response: {www.downloadHandler.text}");
+                IsSpeaking = false;
+                OnSpeechComplete?.Invoke();
             }
             else
             {
@@ -100,6 +116,8 @@ public class ElevenLabsTTS : MonoBehaviour
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError($"Error loading audio: {www.error}");
+                IsSpeaking = false;
+                OnSpeechComplete?.Invoke();
             }
             else
             {
@@ -108,6 +126,8 @@ public class ElevenLabsTTS : MonoBehaviour
                 if (clip == null)
                 {
                     Debug.LogError("Failed to create AudioClip");
+                    IsSpeaking = false;
+                    OnSpeechComplete?.Invoke();
                 }
                 else
                 {
@@ -115,6 +135,12 @@ public class ElevenLabsTTS : MonoBehaviour
                     audioSource.clip = clip;
                     audioSource.Play();
                     Debug.Log("Playing audio");
+                    
+                    // Wait until audio playback completes
+                    yield return new WaitForSeconds(clip.length);
+                    
+                    IsSpeaking = false;
+                    OnSpeechComplete?.Invoke();
                 }
             }
         }
