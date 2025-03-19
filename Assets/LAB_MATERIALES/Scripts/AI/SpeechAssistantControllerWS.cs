@@ -27,7 +27,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     [Header("Text-to-Speech")]
     public ElevenLabsTTS textToSpeech;                  
     public bool autoSpeakResponse = true;               
-    public float speakDelay = 0.5f;                     
+    public float speakDelay = 0.1f;                     
 
     [Header("VR Settings")]
     [SerializeField] private bool enableVRInput = true;
@@ -351,17 +351,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             return;
         }
         
-        // Configuramos el texto a hablar en el componente TTS
-        textToSpeech.textToSpeak = response;
-        
-        // Pequeño retraso para asegurar que la UI se actualice antes de reproducir el audio
-        StartCoroutine(SpeakWithDelay(speakDelay));
+        // Se pasa el texto directamente al método, evitando sobrescribir una variable global.
+        StartCoroutine(SpeakWithDelay(speakDelay, response));
     }
-    
-    private IEnumerator SpeakWithDelay(float delay)
+        
+    private IEnumerator SpeakWithDelay(float delay, string response)
     {
         yield return new WaitForSeconds(delay);
-        textToSpeech.GenerateAndPlaySpeech();
+        textToSpeech.GenerateSpeechAndSave(response);
     }
     
     // Para mantener compatibilidad con el botón UI
