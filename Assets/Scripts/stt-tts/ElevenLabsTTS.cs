@@ -7,7 +7,7 @@ using System.IO;
 
 public class ElevenLabsTTS : MonoBehaviour
 {
-    [SerializeField] private string apiKey = "sk_060b722156b8f4e269411520928a5530c22f46f73fd32329";
+    [SerializeField] private string apiKey = "sk_296cb211c63d8d51029d997376ba4e18b303e5b370f299c3";
     [SerializeField] private string voiceID = "94zOad0g7T7K4oa7zhDq";
     [SerializeField] private string modelID = "eleven_flash_v2_5";
     // Variable opcional para un valor por defecto, pero no se usará para encolar solicitudes.

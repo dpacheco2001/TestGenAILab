@@ -224,12 +224,12 @@ PrefabInstance:
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.18
+      value: -3.79
       objectReference: {fileID: 0}
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
@@ -639,15 +639,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1953278938}
   - component: {fileID: 1953278941}
-  - component: {fileID: 1953278940}
-  - component: {fileID: 1953278946}
-  - component: {fileID: 1953278945}
   - component: {fileID: 1953278947}
   - component: {fileID: 1953278939}
   - component: {fileID: 1953278942}
   - component: {fileID: 1953278943}
   - component: {fileID: 1953278944}
   - component: {fileID: 1953278948}
+  - component: {fileID: 1953278949}
   m_Layer: 0
   m_Name: 'ManagerObject '
   m_TagString: Untagged
@@ -684,26 +682,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groqApiKey: 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
   apiEndpoint: https://api.groq.com/openai/v1/audio/transcriptions
---- !u!114 &1953278940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953278936}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa342a5fc34b3a04e85e3f2a8d47122e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioRecorder: {fileID: 1953278941}
-  transcriptionManager: {fileID: 1953278939}
-  transcriptionText: {fileID: 2127149989}
-  recordButton: {fileID: 1726907095587499088}
-  volumeIndicator: {fileID: 0}
-  enableVRInput: 1
-  controllerCharacteristics: 576
-  useSecondaryButton: 0
 --- !u!114 &1953278941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -734,7 +712,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6529ca06497f4a48a7219729f24bdd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: sk_060b722156b8f4e269411520928a5530c22f46f73fd32329
+  apiKey: sk_296cb211c63d8d51029d997376ba4e18b303e5b370f299c3
   voiceID: 94zOad0g7T7K4oa7zhDq
   modelID: eleven_flash_v2_5
   defaultTextToSpeak: "Hola que tal me llamo Mateo y hoy ser\xE9 tu asistente para
@@ -777,52 +755,6 @@ MonoBehaviour:
   textToSpeak: "Si prefieres una actualizaci\xF3n autom\xE1tica, tambi\xE9n puedes
     usar la herramienta GeForce Experience de NVIDIA."
   audioEncoding: 0
---- !u!114 &1953278945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953278936}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 599c2affbf950cb45a96bc226b0e84f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioRecorder: {fileID: 1953278941}
-  transcriptionManager: {fileID: 1953278939}
-  transcriptionText: {fileID: 2127149989}
-  recordButton: {fileID: 1726907095587499088}
-  volumeIndicator: {fileID: 0}
-  assistant: {fileID: 1953278946}
-  studentCode: 20190051
-  assistantResponseText: {fileID: 205997183}
-  autoSendTranscription: 1
-  textToSpeech: {fileID: 1953278942}
-  autoSpeakResponse: 1
-  speakDelay: 0.1
-  enableVRInput: 1
-  controllerCharacteristics: 576
-  useSecondaryButton: 0
-  isRecording: 0
-  wasPressed: 0
---- !u!114 &1953278946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953278936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caeb2cfa2d28d5248b672bb0ac013c9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseUrl: https://2483-38-253-189-83.ngrok-free.app
-  endpoint: /process
-  message: Hola
-  code: 20190051
-  response: 
 --- !u!114 &1953278947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -948,6 +880,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1953278949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953278936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac5bac695e40e894ab9187641e95f030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2127149986
 GameObject:
   m_ObjectHideFlags: 0

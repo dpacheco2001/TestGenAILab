@@ -102,9 +102,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
      
             string message = System.Text.Encoding.UTF8.GetString(bytes);
             Debug.Log($"WebSocket message received: {message}");
+            if(message.StartsWith("tool_call")){
+                Debug.Log("Tool call received");
+                Debug.Log(message);
+            }
+            else{
+                ProcessWebSocketResponse(message);
+            }
 
-
-            ProcessWebSocketResponse(message);
         };
 
  
