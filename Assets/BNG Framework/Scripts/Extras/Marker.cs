@@ -66,7 +66,7 @@ namespace BNG {
                     bool closed = strokeAnalyzer.IsStrokeClosed();
                     Debug.Log(closed ? "¡El trazo está cerrado!" : "El trazo no está cerrado.");
                     if(closed) {
-                        // Para cada objeto de la lista, comprobamos si está encerrado
+                        // Para cada objeto de la lista, comprobamos si está encerrado.
                         foreach(var obj in enclosableObjects) {
                             if(obj.target != null) {
                                 Vector2 targetPos2D = new Vector2(obj.target.position.x, obj.target.position.y);
@@ -91,7 +91,7 @@ namespace BNG {
         }
 
         IEnumerator WriteRoutine() {
-            // Usamos un delay fijo en lugar de FixedUpdate para reducir la frecuencia de raycasts
+            // Usamos un delay fijo en lugar de FixedUpdate para reducir la frecuencia de raycasts.
             WaitForSeconds wait = new WaitForSeconds(0.02f);
             while (true) {
                 if (Physics.Raycast(RaycastStart.position, RaycastStart.up, out RaycastHit hit, RaycastLength, DrawingLayers, QueryTriggerInteraction.Ignore)) {
@@ -188,6 +188,29 @@ namespace BNG {
                 currentStrokeParent = null;
                 Debug.Log("Trazo borrado por no estar cerrado.");
             }
+        }
+
+        // MÉTODO NUEVO:
+        // Este método devuelve una cadena con los nombres de los objetos encerrados y borra todos los trazos.
+        public string GetEnclosedObjectsAndClearStrokes() {
+            List<string> enclosedNames = new List<string>();
+            foreach (var obj in enclosableObjects) {
+                if (obj.target != null && obj.isEnclosed) {
+                    enclosedNames.Add(obj.target.name);
+                }
+            }
+
+            string result = (enclosedNames.Count > 0) ? string.Join(", ", enclosedNames) : "Ningún objeto encerrado";
+            Debug.Log("Respuesta GET: " + result);
+
+            // Borramos todos los trazos
+            if (currentStrokeParent != null) {
+                Destroy(currentStrokeParent.gameObject);
+                currentStrokeParent = null;
+                Debug.Log("Trazos borrados tras la solicitud GET.");
+            }
+
+            return result;
         }
 
         void OnDrawGizmosSelected() {

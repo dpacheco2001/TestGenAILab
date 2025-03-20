@@ -43,6 +43,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
 
     public bool streaming = false;
 
+    [Header("Utils for tools")]
+
+    public GameObject guia_arrow;
+    public GameObject ensenar_mando;
+
+    public GameObject imagen;
+
+
     async void Start()
     {
 
@@ -70,6 +78,18 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         if (enableVRInput)
         {
             TryInitializeController();
+        }
+
+        if (imagen){
+            imagen.SetActive(false);
+        }
+
+        if (guia_arrow){
+            guia_arrow.SetActive(false);
+        }
+
+        if (ensenar_mando){
+            ensenar_mando.SetActive(false);
         }
 
         await ConnectToWebSocket();
@@ -104,6 +124,15 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             Debug.Log($"WebSocket message received: {message}");
             if(message.StartsWith("tool_call")){
                 Debug.Log("Tool call received");
+                if(message == "tool_call:guiar_a_lugar_de_ensayo"){
+                    guia_arrow.SetActive(true);
+                }
+                else if(message == "tool_call:senalar_boton_mando_coger"){
+                    ensenar_mando.SetActive(true);
+                }
+                else if(message == "tool_call:mostrar_imagen_pieza"){
+                    imagen.SetActive(true);
+                }
                 Debug.Log(message);
             }
             else{
