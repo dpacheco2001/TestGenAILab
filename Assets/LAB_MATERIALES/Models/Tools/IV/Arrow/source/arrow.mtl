@@ -1,0 +1,7 @@
+# Exported by Open CASCADE Technology [dev.opencascade.org]
+newmtl tex-global
+Ka 0.349190 0.349190 0.349190
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ns 399.999969
+map_Kd arrow_textures/1.png

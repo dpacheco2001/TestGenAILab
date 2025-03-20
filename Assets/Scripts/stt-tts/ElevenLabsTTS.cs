@@ -7,53 +7,96 @@ using System.IO;
 
 public class ElevenLabsTTS : MonoBehaviour
 {
-    [SerializeField] private string apiKey = "sk_060b722156b8f4e269411520928a5530c22f46f73fd32329";
+    [SerializeField] private string apiKey = "sk_296cb211c63d8d51029d997376ba4e18b303e5b370f299c3";
     [SerializeField] private string voiceID = "94zOad0g7T7K4oa7zhDq";
     [SerializeField] private string modelID = "eleven_flash_v2_5";
-    [SerializeField] private string textToSpeak = "Hola que tal me llamo Mateo y hoy seré tu asistente para este laboratorio";
-    
-    // Reference to an AudioSource component to play the audio
-    private AudioSource audioSource;
+    // Variable opcional para un valor por defecto, pero no se usará para encolar solicitudes.
+    [SerializeField] public string defaultTextToSpeak = "Hola que tal me llamo Mateo y hoy seré tu asistente para este laboratorio";
 
-    void Start()
+    // Evento global opcional para notificar cada vez que se genera un audio.
+    public event Action<string> OnAudioGenerated;
+
+    // Indicador de que se está procesando una petición.
+    private bool isProcessingRequest = false;
+    // Cola de peticiones; cada una contiene el texto a convertir y su callback.
+    private Queue<RequestData> requestQueue = new Queue<RequestData>();
+
+    private class RequestData
     {
-        // Get or add AudioSource component
-        audioSource = GetComponent<AudioSource>();
-        if (audioSource == null)
-            audioSource = gameObject.AddComponent<AudioSource>();
-            
-        Debug.Log("ElevenLabsTTS initialized. Press SPACEBAR to generate speech.");
-    }
-    
-    void Update()
-    {
-        // Press spacebar to generate speech
-        if (Input.GetKeyDown(KeyCode.Space))
+        public string text;
+        public Action<string> callback;
+
+        public RequestData(string text, Action<string> callback)
         {
-            Debug.Log("Generating speech...");
-            GenerateAndPlaySpeech();
+            this.text = text;
+            this.callback = callback;
         }
     }
 
-    public void GenerateAndPlaySpeech()
+    void Start()
     {
-        StartCoroutine(GetTTS());
+        Debug.Log("ElevenLabsTTS initialized.");
     }
 
-    private IEnumerator GetTTS()
+    /// <summary>
+    /// Encola una solicitud de generación de audio utilizando el texto proporcionado.
+    /// </summary>
+    /// <param name="text">Texto a convertir en audio</param>
+    /// <param name="callback">
+    /// Callback que se invoca al terminar la generación con el parámetro
+    /// siendo la ruta del archivo generado o null en caso de error.
+    /// </param>
+    public void GenerateSpeechAndSave(string text, Action<string> callback = null)
     {
-        // Use the standard endpoint instead of streaming
+        requestQueue.Enqueue(new RequestData(text, callback));
+        if (!isProcessingRequest)
+        {
+            ProcessNextRequest();
+        }
+    }
+
+    /// <summary>
+    /// Método auxiliar para definir el texto y generar el audio.
+    /// </summary>
+    /// <param name="text">Texto a convertir en audio</param>
+    /// <param name="callback">Callback opcional</param>
+    public void SpeakText(string text, Action<string> callback = null)
+    {
+        GenerateSpeechAndSave(text, callback);
+    }
+
+    /// <summary>
+    /// Procesa la siguiente petición en la cola, si existe.
+    /// </summary>
+    private void ProcessNextRequest()
+    {
+        if (requestQueue.Count > 0)
+        {
+            isProcessingRequest = true;
+            RequestData request = requestQueue.Dequeue();
+            StartCoroutine(GetTTS(request.text, request.callback));
+        }
+        else
+        {
+            isProcessingRequest = false;
+        }
+    }
+
+    private IEnumerator GetTTS(string text, Action<string> callback)
+    {
+        // Endpoint para la generación de TTS.
         string url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceID}";
 
-        // Create request body
+        // Cuerpo de la petición en formato JSON usando el texto pasado como parámetro.
         string jsonBody = "{" +
-            $"\"text\": \"{textToSpeak}\"," +
+            $"\"text\": \"{text}\"," +
             $"\"model_id\": \"{modelID}\"" +
         "}";
 
-        Debug.Log("Sending request to ElevenLabs...");
-        
-        // Create web request
+        Debug.Log("Enviando solicitud a ElevenLabs...");
+
+        string generatedFilePath = null;
+
         using (UnityWebRequest www = new UnityWebRequest(url, "POST"))
         {
             byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonBody);
@@ -61,62 +104,50 @@ public class ElevenLabsTTS : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("xi-api-key", apiKey);
             www.SetRequestHeader("Content-Type", "application/json");
-            www.SetRequestHeader("Accept", "audio/mpeg");  // Explicitly request MP3 format
+            www.SetRequestHeader("Accept", "audio/mpeg");  // Se solicita el formato MP3
 
-            // Send the request and wait for response
+            // Envía la solicitud y espera la respuesta.
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
             {
                 Debug.LogError($"Error: {www.error}");
-                Debug.LogError($"Response: {www.downloadHandler.text}");
+                Debug.LogError($"Respuesta: {www.downloadHandler.text}");
             }
             else
             {
-                Debug.Log($"Audio received successfully. Data size: {www.downloadHandler.data.Length} bytes");
-                
-                // Save audio to a temporary file
-                string tempFilePath = Path.Combine(Application.temporaryCachePath, "tts_audio.mp3");
-                File.WriteAllBytes(tempFilePath, www.downloadHandler.data);
-                Debug.Log($"Audio saved to: {tempFilePath}");
-                
-                // Wait a frame to ensure file is written
-                yield return null;
-                
-                // Start another coroutine to load and play the audio
-                StartCoroutine(LoadAndPlayAudio(tempFilePath));
+                Debug.Log($"Audio recibido correctamente. Tamaño de datos: {www.downloadHandler.data.Length} bytes");
+
+                // Genera un nombre único para el archivo temporal.
+                generatedFilePath = GetUniqueTempFilePath();
+                File.WriteAllBytes(generatedFilePath, www.downloadHandler.data);
+                Debug.Log($"Audio guardado en: {generatedFilePath}");
             }
         }
+
+        // Se notifica mediante el callback y el evento global.
+        callback?.Invoke(generatedFilePath);
+        OnAudioGenerated?.Invoke(generatedFilePath);
+
+        // Procesa la siguiente petición en la cola.
+        ProcessNextRequest();
     }
 
-    private IEnumerator LoadAndPlayAudio(string filePath)
+    /// <summary>
+    /// Genera un nombre de archivo único en la carpeta temporal, usando un contador consecutivo.
+    /// </summary>
+    /// <returns>Ruta completa del archivo temporal</returns>
+    private string GetUniqueTempFilePath()
     {
-        Debug.Log($"Loading audio from: {filePath}");
-        
-        using (UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip("file://" + filePath, AudioType.MPEG))
+        string directory = Application.temporaryCachePath;
+        int counter = 0;
+        string filePath;
+        do
         {
-            yield return www.SendWebRequest();
+            filePath = Path.Combine(directory, $"tts_audio_{counter}.mp3");
+            counter++;
+        } while (File.Exists(filePath));
 
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                Debug.LogError($"Error loading audio: {www.error}");
-            }
-            else
-            {
-                AudioClip clip = DownloadHandlerAudioClip.GetContent(www);
-                
-                if (clip == null)
-                {
-                    Debug.LogError("Failed to create AudioClip");
-                }
-                else
-                {
-                    Debug.Log($"AudioClip created successfully. Length: {clip.length} seconds");
-                    audioSource.clip = clip;
-                    audioSource.Play();
-                    Debug.Log("Playing audio");
-                }
-            }
-        }
+        return filePath;
     }
 }
