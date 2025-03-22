@@ -50,6 +50,10 @@ public class SpeechAssistantControllerWS : MonoBehaviour
 
     public GameObject imagen;
 
+    [Header("User Input Simulation")]
+    public bool simulateUserInput = false;
+    public string simulatedTranscription = "Hola Robert!";
+
 
     async void Start()
     {
@@ -187,6 +191,12 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 StopRecording();
             }
         }
+        else{
+            if(simulateUserInput && simulatedTranscription != null){
+                simulateUserInput = false;
+                SendTranscriptionToWebSocket(simulatedTranscription);
+            }
+        }
 
 
         if (isRecording && volumeIndicator != null && audioRecorder != null)
@@ -214,6 +224,9 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         }
     }
 
+
+         
+    
     async void StartRecording()
     {
         if (isRecording) return; 
