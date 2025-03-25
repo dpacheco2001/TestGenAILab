@@ -22,20 +22,22 @@ public class LinearMover : MonoBehaviour
     [Tooltip("HingeHelper to disable while this mover is active")]
     public HingeHelper hingeToDisable;      // Referencia al HingeHelper que queremos desactivar
 
-    private Vector3 initialPosition;        // Initial position
-    private Vector3 currentPosition;        // Posición actual
+    private Vector3 initialLocalPosition;    // Initial local position
+    private Vector3 currentLocalPosition;    // Posición local actual
     private float lastNormalizedAngle = 0f; // Último ángulo normalizado
     private bool isFirstUpdate = true;      // Flag para primera actualización
     private float stepSize;                 // Size of each step
     private bool isInitialized = false;
     private bool wasHingeEnabled = false;   // Para guardar el estado original del HingeHelper
+    private GrabbableUnityEvents grabbableEvents; // Referencia a los eventos del objeto agarrable
 
     void Start()
     {
-        // Guardar posición inicial
-        initialPosition = transform.position;
-        currentPosition = initialPosition;
-
+        Debug.Log($"[LinearMover] Start en {gameObject.name}");
+        
+        // Guardar posición local inicial
+        initialLocalPosition = transform.localPosition;
+        currentLocalPosition = initialLocalPosition;
 
         stepSize = (maxDisplacement * movementScale) / steps;
 
@@ -45,22 +47,99 @@ public class LinearMover : MonoBehaviour
             isInitialized = true;
         }
 
+        // Obtener y configurar GrabbableUnityEvents
+        grabbableEvents = GetComponent<GrabbableUnityEvents>();
+        if (grabbableEvents != null)
+        {
+            Debug.Log($"[LinearMover] GrabbableUnityEvents encontrado en {gameObject.name}");
+            
+            // Suscribirse a los eventos
+            grabbableEvents.onGrab.AddListener(DisableHingeOnGrab);
+            grabbableEvents.onRelease.AddListener(EnableHingeOnRelease);
+            
+            Debug.Log($"[LinearMover] Eventos suscritos correctamente");
+        }
+        else
+        {
+            //Debug.LogError($"[LinearMover] ¡No se encontró GrabbableUnityEvents en {gameObject.name}!");
+        }
+
         // Guardar el estado inicial del HingeHelper a desactivar
         if (hingeToDisable != null)
         {
             wasHingeEnabled = hingeToDisable.enabled;
+            Debug.Log($"[LinearMover] Estado inicial de hingeToDisable: {wasHingeEnabled}");
+        }
+        else
+        {
+           // Debug.LogError($"[LinearMover] ¡hingeToDisable no está asignado en {gameObject.name}!");
+        }
+    }
+
+    void OnEnable()
+    {
+        Debug.Log($"[LinearMover] OnEnable en {gameObject.name}");
+        // Asegurarse de que los eventos estén suscritos
+        if (grabbableEvents != null)
+        {
+            grabbableEvents.onGrab.AddListener(DisableHingeOnGrab);
+            grabbableEvents.onRelease.AddListener(EnableHingeOnRelease);
+        }
+    }
+
+    void OnDisable()
+    {
+        Debug.Log($"[LinearMover] OnDisable en {gameObject.name}");
+        // Limpiar eventos
+        if (grabbableEvents != null)
+        {
+            grabbableEvents.onGrab.RemoveListener(DisableHingeOnGrab);
+            grabbableEvents.onRelease.RemoveListener(EnableHingeOnRelease);
+        }
+    }
+
+    public void pruebaOnGrab()
+    {
+        Debug.Log($"[LinearMover] prueba llamada en {gameObject.name}");
+    }
+
+    public void pruebaOnRelease()
+    {
+        Debug.Log($"[LinearMover] pruebaOnRelease llamada en {gameObject.name}");
+    }
+
+    public void DisableHingeOnGrab(Grabber grabber)
+    {
+        Debug.Log($"[LinearMover] DisableHingeOnGrab llamado en {gameObject.name} por el grabber {grabber.name}");
+        if (hingeToDisable != null)
+        {
+            Debug.Log($"[LinearMover] Desactivando hingeToDisable. Estado anterior: {hingeToDisable.enabled}");
+            hingeToDisable.enabled = false;
+        }
+        else
+        {
+            Debug.LogError($"[LinearMover] ¡hingeToDisable es null en DisableHingeOnGrab!");
+        }
+    }
+
+    // Método público para llamar desde GrabbableUnityEvents - OnRelease
+    public void EnableHingeOnRelease()
+    {
+        Debug.Log($"[LinearMover] EnableHingeOnRelease llamado en {gameObject.name}");
+        if (hingeToDisable != null)
+        {
+            Debug.Log($"[LinearMover] Reactivando hingeToDisable a su estado original: {wasHingeEnabled}");
+            hingeToDisable.enabled = wasHingeEnabled;
+        }
+        else
+        {
+            Debug.LogError($"[LinearMover] ¡hingeToDisable es null en EnableHingeOnRelease!");
         }
     }
 
     void OnAngleChanged(float angle)
     {
         if (!isInitialized) return;
-
-        // Desactivar el otro HingeHelper cuando empezamos a mover
-        if (hingeToDisable != null && hingeToDisable.enabled)
-        {
-            hingeToDisable.enabled = false;
-        }
 
         // Calcular el ángulo normalizado
         float normalizedAngle;
@@ -91,7 +170,7 @@ public class LinearMover : MonoBehaviour
         // Calcular el cambio en el movimiento
         float deltaMovement = (normalizedAngle - lastNormalizedAngle) * maxDisplacement * movementScale;
         
-        // Actualizar la posición actual
+        // Actualizar la posición local actual
         Vector3 movement = Vector3.zero;
         switch (moveAxis)
         {
@@ -106,22 +185,54 @@ public class LinearMover : MonoBehaviour
                 break;
         }
 
-        // Actualizar posición
-        currentPosition += movement;
-        transform.position = currentPosition;
+        // Actualizar posición local
+        currentLocalPosition += movement;
+        transform.localPosition = currentLocalPosition;
         lastNormalizedAngle = normalizedAngle;
     }
 
     void OnDestroy()
     {
+        Debug.Log($"[LinearMover] OnDestroy llamado en {gameObject.name}");
+        
         if (hingeHelper != null)
         {
             hingeHelper.onHingeChange.RemoveListener(OnAngleChanged);
         }
 
+        // Desuscribirse de los eventos
+        if (grabbableEvents != null)
+        {
+            grabbableEvents.onGrab.RemoveListener(DisableHingeOnGrab);
+            grabbableEvents.onRelease.RemoveListener(EnableHingeOnRelease);
+        }
+
         // Restaurar el estado original del HingeHelper
         if (hingeToDisable != null)
         {
+            Debug.Log($"[LinearMover] Restaurando estado final de hingeToDisable a: {wasHingeEnabled}");
+            hingeToDisable.enabled = wasHingeEnabled;
+        }
+    }
+
+    // Método que se conectará en el Inspector
+    public void OnGrabHandler()
+    {
+        Debug.Log($"[LinearMover] OnGrabHandler llamado en {gameObject.name}");
+        if (hingeToDisable != null)
+        {
+            Debug.Log($"[LinearMover] Desactivando hingeToDisable. Estado anterior: {hingeToDisable.enabled}");
+            hingeToDisable.enabled = false;
+        }
+    }
+
+    // Método que se conectará en el Inspector
+    public void OnReleaseHandler()
+    {
+        Debug.Log($"[LinearMover] OnReleaseHandler llamado en {gameObject.name}");
+        if (hingeToDisable != null)
+        {
+            Debug.Log($"[LinearMover] Reactivando hingeToDisable a su estado original: {wasHingeEnabled}");
             hingeToDisable.enabled = wasHingeEnabled;
         }
     }

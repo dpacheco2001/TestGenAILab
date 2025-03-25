@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 4861469}
   - component: {fileID: 4861468}
   - component: {fileID: 4861467}
+  - component: {fileID: 4861475}
   m_Layer: 0
   m_Name: KnobHandle
   m_TagString: Untagged
@@ -428,6 +429,96 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4861465}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4861475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4861465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad179a9e83dba5142adaaf7737678e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onGrab:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3659314484729624445}
+        m_TargetAssemblyTypeName: LinearMover, Assembly-CSharp
+        m_MethodName: OnGrabHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onRelease:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3659314484729624445}
+        m_TargetAssemblyTypeName: LinearMover, Assembly-CSharp
+        m_MethodName: OnReleaseHandler
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onBecomesClosestGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onNoLongerClosestGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onBecomesClosestRemoteGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onNoLongerClosestRemoteGrabbable:
+    m_PersistentCalls:
+      m_Calls: []
+  onGrip:
+    m_PersistentCalls:
+      m_Calls: []
+  onTrigger:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerDown:
+    m_PersistentCalls:
+      m_Calls: []
+  onTriggerUp:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1Down:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton1Up:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2Down:
+    m_PersistentCalls:
+      m_Calls: []
+  onButton2Up:
+    m_PersistentCalls:
+      m_Calls: []
+  onSnapZoneEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  onSnapZoneExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6642335
 GameObject:
   m_ObjectHideFlags: 0
@@ -9984,7 +10075,7 @@ PrefabInstance:
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.433
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: 2683195716791022646, guid: 4ac7df741a9c0a2418ec19477729ee3d,
         type: 3}
@@ -12434,6 +12525,7 @@ GameObject:
   - component: {fileID: 2311412204987440831}
   - component: {fileID: 4871916864806407010}
   - component: {fileID: 4871916864806407011}
+  - component: {fileID: 4871916864806407012}
   m_Layer: 0
   m_Name: XBody
   m_TagString: Untagged
@@ -15205,14 +15297,11 @@ MonoBehaviour:
   hingeHelper: {fileID: 4861467}
   maxDisplacement: 1
   steps: 10
-  moveAxis: 2
-  movementScale: 0.05
+  moveAxis: 1
+  movementScale: 0.005
   invertDirection: 1
   useHingeLimits: 1
-  targetObject: {fileID: 1168851016}
-  scriptToDisable: HingeHelper
-  disableScriptDuringMovement: 1
-  disableHingeDuringMovement: 0
+  hingeToDisable: {fileID: 1168851018}
 --- !u!1 &3661428214939085121
 GameObject:
   m_ObjectHideFlags: 0
@@ -15956,7 +16045,7 @@ Transform:
   m_GameObject: {fileID: 1122939331195523619}
   serializedVersion: 2
   m_LocalRotation: {x: 0.0022043649, y: 0.0022163468, z: 0.7071483, w: 0.70705837}
-  m_LocalPosition: {x: 0.0198, y: 0.0381, z: -0.055}
+  m_LocalPosition: {x: 0.0198, y: 0.0401, z: -0.055}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -16576,14 +16665,82 @@ MonoBehaviour:
   hingeHelper: {fileID: 1168851018}
   maxDisplacement: 1
   steps: 10
-  moveAxis: 0
-  movementScale: 0.05
-  invertDirection: 1
+  moveAxis: 1
+  movementScale: 0.005
+  invertDirection: 0
   useHingeLimits: 1
-  targetObject: {fileID: 0}
-  scriptToDisable: 
-  disableScriptDuringMovement: 0
-  disableHingeDuringMovement: 0
+  hingeToDisable: {fileID: 0}
+--- !u!114 &4871916864806407012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122939331195523619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cdea428d48e2bb488d33d5f75c39bb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeingHeld: 0
+  GrabButton: 2
+  Grabtype: 2
+  GrabPhysics: 4
+  GrabMechanic: 1
+  GrabSpeed: 15
+  RemoteGrabbable: 0
+  RemoteGrabMechanic: 0
+  RemoteGrabDistance: 2
+  CanDropMidGrab: 0
+  ThrowForceMultiplier: 2
+  ThrowForceMultiplierAngular: 1.5
+  BreakDistance: 0
+  HideHandGraphics: 0
+  ParentToHands: 0
+  ParentHandModel: 1
+  SnapHandModel: 1
+  CanBeDropped: 1
+  CanBeSnappedToSnapZone: 1
+  ForceDisableKinematicOnDrop: 0
+  InstantMovement: 0
+  MakeChildCollidersGrabbable: 0
+  handPoseType: 1
+  SelectedHandPose: {fileID: 0}
+  CustomHandPose: 0
+  SecondaryGrabBehavior: 0
+  TwoHandedPosition: 0
+  TwoHandedPostionLerpAmount: 0.5
+  TwoHandedRotation: 1
+  TwoHandedRotationLerpAmount: 0.5
+  TwoHandedDropBehavior: 0
+  TwoHandedLookVector: 0
+  SecondHandLookSpeed: 40
+  SecondaryGrabbable: {fileID: 0}
+  OtherGrabbableMustBeGrabbed: {fileID: 0}
+  CollisionSpring: 3000
+  CollisionSlerp: 500
+  CollisionLinearMotionX: 2
+  CollisionLinearMotionY: 2
+  CollisionLinearMotionZ: 2
+  CollisionAngularMotionX: 2
+  CollisionAngularMotionY: 2
+  CollisionAngularMotionZ: 2
+  ApplyCorrectiveForce: 1
+  MoveVelocityForce: 3000
+  MoveAngularVelocityForce: 90
+  LastGrabTime: 0
+  LastRemoteGrabTime: 0
+  LastDropTime: 0
+  AddControllerVelocityOnDrop: 1
+  collisions: []
+  ActiveGrabPoint: {fileID: 0}
+  SecondaryLookOffset: {x: 0, y: 0, z: 0}
+  SecondaryLookAtTransform: {fileID: 0}
+  LocalOffsetTransform: {fileID: 0}
+  GrabPoints: []
+  UseCustomInspector: 1
+  lastFlickTime: 0
+  FlickForce: 1
 --- !u!224 &4873462832734104942
 RectTransform:
   m_ObjectHideFlags: 0
