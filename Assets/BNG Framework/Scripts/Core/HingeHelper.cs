@@ -33,43 +33,67 @@ namespace BNG {
         public FloatEvent onHingeChange;
         public FloatEvent onHingeSnapChange;
 
+        [Header("Angle Limits")]
+        [Tooltip("Enable angle limits")]
+        public bool useLimits = false;
+        public float minAngle = -180f;
+        public float maxAngle = 180f;
+
         Rigidbody rigid;
 
         private float _lastDegrees = 0;
         private float _lastSnapDegrees = 0;
+        private float _accumulatedAngle = 0f;
+        private bool _isFirstUpdate = true;
 
         void Start() {
             rigid = GetComponent<Rigidbody>();
+            _accumulatedAngle = ConvertTo180Range(transform.localEulerAngles.y);
         }
 
         void Update() {
+            float rawDegrees = transform.localEulerAngles.y;
+            float currentAngle;
 
-            // Update degrees our transform is representing
-            float degrees = getSmoothedValue(transform.localEulerAngles.y);
+            if (useLimits) {
+                // Convertir a rango -180 a 180
+                currentAngle = ConvertTo180Range(rawDegrees);
+                
+                // Aplicar límites
+                currentAngle = Mathf.Clamp(currentAngle, minAngle, maxAngle);
 
-            // Call event if necessary
-            if(degrees != _lastDegrees) {
-                OnHingeChange(degrees);
+                // Si está en el límite, mantener el ángulo acumulado
+                if (currentAngle == minAngle || currentAngle == maxAngle) {
+                    currentAngle = _accumulatedAngle;
+                }
+            }
+            else {
+                // Calcular el cambio de ángulo desde la última actualización
+                float deltaAngle = Mathf.DeltaAngle(_lastDegrees, rawDegrees);
+                _accumulatedAngle += deltaAngle;
+                currentAngle = _accumulatedAngle;
             }
 
-            _lastDegrees = degrees;
+            // Solo actualizar si hay cambio real en el ángulo
+            if (currentAngle != _lastDegrees) {
+                OnHingeChange(currentAngle);
+            }
 
-            // Check for snapping a graphics transform
-            float nearestSnap = getSmoothedValue(Mathf.Round(degrees / SnapDegrees) * SnapDegrees);
+            _lastDegrees = currentAngle;
+            _accumulatedAngle = currentAngle;
 
-            // If snapping update graphics and call events
+            // Check for snapping
             if (SnapToDegrees) {
-
-                // Check for snap event
+                float nearestSnap = Mathf.Round(currentAngle / SnapDegrees) * SnapDegrees;
                 if (nearestSnap != _lastSnapDegrees) {
                     OnSnapChange(nearestSnap);
                 }
                 _lastSnapDegrees = nearestSnap;
             }
 
-            // Update label used for display or debugging
+            // Update label
             if (LabelToUpdate) {
-                float val = getSmoothedValue(SnapToDegrees ? nearestSnap : degrees);
+                float val = SnapToDegrees ? _lastSnapDegrees : currentAngle;
                 LabelToUpdate.text = val.ToString("n0");
             }
         }
@@ -108,15 +132,12 @@ namespace BNG {
             }
         }
 
-        float getSmoothedValue(float val) {
-            if (val < 0) {
-                val = 360 - val;
+        // Convert angle from 0-360 to -180 to +180 range
+        private float ConvertTo180Range(float angle) {
+            if (angle > 180f) {
+                return angle - 360f;
             }
-            if (val == 360) {
-                val = 0;
-            }
-
-            return val;
+            return angle;
         }
     }
 }
