@@ -90,9 +90,21 @@ MonoBehaviour:
       LocalPosition: {x: 0.01944108, y: 0.00000018051705, z: 0.000000684117}
       LocalRotation: {x: 2.577212e-39, y: -1e-45, z: -7.868549e-38, w: 1}
     OtherJoints:
-    - TransformName: Gloves_low
+    - TransformName: gripTrans
+      LocalPosition: {x: 0.0363, y: 0.0237, z: 0.0254}
+      LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+    - TransformName: hands_r_gloves_mat06
       LocalPosition: {x: 0, y: 0, z: 0}
+      LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+    - TransformName: Golves_low
+      LocalPosition: {x: -0, y: 0, z: 0}
       LocalRotation: {x: 0, y: 0, z: 0, w: 1}
     - TransformName: hands:r_hand_world
       LocalPosition: {x: 0.017749999, y: 0.049009997, z: -0.0717}
       LocalRotation: {x: 0.7599481, y: 0.541514, z: -0.17099279, w: -0.31623262}
+    - TransformName: hands:b_r_grip
+      LocalPosition: {x: -0.07351066, y: 0.013962139, z: -0.023953618}
+      LocalRotation: {x: 0.57018894, y: 0.016357053, z: 0.8065085, w: -0.15543854}
+    - TransformName: hands:b_r_hand_ignore
+      LocalPosition: {x: -0.13611329, y: 0.00000039665923, z: 0.0000006813971}
+      LocalRotation: {x: 0.22704248, y: 0, z: 0, w: 0.9738849}

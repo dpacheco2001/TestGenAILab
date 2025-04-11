@@ -20,7 +20,7 @@ MonoBehaviour:
       LocalRotation: {x: 0.5564005, y: -0.018750938, z: 0.76965183, w: 0.3125748}
     ThumbJoints:
     - TransformName: hands:b_r_thumb1
-      LocalPosition: {x: -0.029629685, y: 0.04147109, z: -0.020563869}
+      LocalPosition: {x: -0.030877931, y: 0.04147109, z: -0.020563869}
       LocalRotation: {x: 0.1700592, y: 0.96215737, z: -0.061949052, w: 0.20370413}
     - TransformName: hands:b_r_thumb2
       LocalPosition: {x: 0.03258561, y: 0.0000027154815, z: -0.00000027681938}

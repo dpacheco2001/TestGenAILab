@@ -20,7 +20,7 @@ MonoBehaviour:
       LocalRotation: {x: 0.5564005, y: -0.018750938, z: 0.76965183, w: 0.3125748}
     ThumbJoints:
     - TransformName: hands:b_r_thumb1
-      LocalPosition: {x: -0.030877931, y: 0.04147109, z: -0.020563869}
+      LocalPosition: {x: -0.029629685, y: 0.04147109, z: -0.020563869}
       LocalRotation: {x: 0.21415699, y: 0.9524398, z: -0.057666693, w: 0.20897314}
     - TransformName: hands:b_r_thumb2
       LocalPosition: {x: 0.03258561, y: 0.0000027154815, z: -0.00000027681938}
@@ -98,7 +98,7 @@ MonoBehaviour:
       LocalPosition: {x: 0, y: 0, z: 0}
       LocalRotation: {x: 0, y: 0, z: 0, w: 1}
     - TransformName: Golves_low
-      LocalPosition: {x: 0, y: 0, z: 0}
+      LocalPosition: {x: -0, y: 0, z: 0}
       LocalRotation: {x: 0, y: 0, z: 0, w: 1}
     - TransformName: hands:r_hand_world
       LocalPosition: {x: 0.017749999, y: 0.049009997, z: -0.0717}
