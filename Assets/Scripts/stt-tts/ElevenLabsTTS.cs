@@ -81,19 +81,24 @@ public class ElevenLabsTTS : MonoBehaviour
             isProcessingRequest = false;
         }
     }
-
+    [System.Serializable]
+    public class ElevenLabsRequest
+    {
+        public string text;
+        public string model_id;
+    }
     private IEnumerator GetTTS(string text, Action<string> callback)
     {
-        // Endpoint para la generación de TTS.
         string url = $"https://api.elevenlabs.io/v1/text-to-speech/{voiceID}";
 
-        // Cuerpo de la petición en formato JSON usando el texto pasado como parámetro.
-        string jsonBody = "{" +
-            $"\"text\": \"{text}\"," +
-            $"\"model_id\": \"{modelID}\"" +
-        "}";
+        var requestData = new ElevenLabsRequest
+        {
+            text = text,
+            model_id = modelID
+        };
 
-        Debug.Log("Enviando solicitud a ElevenLabs...");
+        string jsonBody = JsonUtility.ToJson(requestData);
+        Debug.Log($"Enviando solicitud a ElevenLabs...\n{jsonBody}");
 
         string generatedFilePath = null;
 
@@ -104,9 +109,8 @@ public class ElevenLabsTTS : MonoBehaviour
             www.downloadHandler = new DownloadHandlerBuffer();
             www.SetRequestHeader("xi-api-key", apiKey);
             www.SetRequestHeader("Content-Type", "application/json");
-            www.SetRequestHeader("Accept", "audio/mpeg");  // Se solicita el formato MP3
+            www.SetRequestHeader("Accept", "audio/mpeg");
 
-            // Envía la solicitud y espera la respuesta.
             yield return www.SendWebRequest();
 
             if (www.result != UnityWebRequest.Result.Success)
@@ -118,18 +122,14 @@ public class ElevenLabsTTS : MonoBehaviour
             {
                 Debug.Log($"Audio recibido correctamente. Tamaño de datos: {www.downloadHandler.data.Length} bytes");
 
-                // Genera un nombre único para el archivo temporal.
                 generatedFilePath = GetUniqueTempFilePath();
                 File.WriteAllBytes(generatedFilePath, www.downloadHandler.data);
                 Debug.Log($"Audio guardado en: {generatedFilePath}");
             }
         }
 
-        // Se notifica mediante el callback y el evento global.
         callback?.Invoke(generatedFilePath);
         OnAudioGenerated?.Invoke(generatedFilePath);
-
-        // Procesa la siguiente petición en la cola.
         ProcessNextRequest();
     }
 
