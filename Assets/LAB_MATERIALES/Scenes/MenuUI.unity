@@ -81639,7 +81639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6529ca06497f4a48a7219729f24bdd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  apiKey: sk_296cb211c63d8d51029d997376ba4e18b303e5b370f299c3
+  apiKey: sk_8c643e1a79f61ffdcdf389d98358a37ec74e6624f61b60b1
   voiceID: 94zOad0g7T7K4oa7zhDq
   modelID: eleven_flash_v2_5
   defaultTextToSpeak: "Hola que tal me llamo Mateo y hoy ser\xE9 tu asistente para
@@ -81699,12 +81699,12 @@ MonoBehaviour:
   transcriptionText: {fileID: 2127149989}
   recordButton: {fileID: 1726907095587499088}
   volumeIndicator: {fileID: 0}
-  webSocketUrl: ws://localhost:6789
+  webSocketUrl: ws://localhost:6788
   studentCode: 20190051
   assistantResponseText: {fileID: 0}
   autoSendTranscription: 1
   textToSpeech: {fileID: 1953278942}
-  autoSpeakResponse: 1
+  autoSpeakResponse: 0
   speakDelay: 0.1
   enableVRInput: 1
   controllerCharacteristics: 576
