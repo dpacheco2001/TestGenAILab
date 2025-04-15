@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class banderas_tools : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [Header("GameObject Control")]
+    public GameObject objetoADesactivar;
 
-    // Update is called once per frame
-    void Update()
+    public void DesactivarObjeto(GameObject objetoADesactivar)
     {
-        
+        if (objetoADesactivar != null)
+        {
+            objetoADesactivar.SetActive(false);
+        }
     }
 }
