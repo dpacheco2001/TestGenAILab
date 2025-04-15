@@ -15,14 +15,11 @@ namespace BNG {
         public float Damage = 25f;
 
         /// <summary>
-        /// Used to determine velocity of this collider
-        /// </summary>
-        public Rigidbody ColliderRigidbody;
-
-        /// <summary>
         /// Minimum Amount of force necessary to do damage. Expressed as relativeVelocity.magnitude
         /// </summary>
         public float MinForce = 0.1f;
+
+        public bool UseRelativeVelocity = false;
 
         /// <summary>
         /// Our previous frame's last relative velocity value
@@ -44,11 +41,7 @@ namespace BNG {
 
         Damageable thisDamageable;
 
-        private void Start() {
-            if (ColliderRigidbody == null) {
-                ColliderRigidbody = GetComponent<Rigidbody>();
-            }
-
+        void Start() {
             thisDamageable = GetComponent<Damageable>();
         }
 
@@ -65,7 +58,9 @@ namespace BNG {
             LastDamageForce = collision.impulse.magnitude;
             LastRelativeVelocity = collision.relativeVelocity.magnitude;
 
-            if (LastDamageForce >= MinForce) {
+            bool validCollision = UseRelativeVelocity ? LastRelativeVelocity >= MinForce : LastDamageForce >= MinForce;
+
+            if (validCollision) {
 
                 // Can we damage what we hit?
                 Damageable d = collision.gameObject.GetComponent<Damageable>();
