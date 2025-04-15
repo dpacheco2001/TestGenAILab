@@ -7,16 +7,11 @@ namespace BNG {
 
         public AudioClip SoundToPlay;
 
-        public float Volume = 1f;
-
-        public float RandomizePitchMinimun = 1.0f;
-        public float RandomizePitchMaximum = 1.0f;
-
-        public float SpatialBlend = 1f;
-
         public override void OnGrab(Grabber grabber) {
+
+            // Play Sound
             if(SoundToPlay) {
-                VRUtils.Instance.PlaySpatialClipAt(SoundToPlay, transform.position, Volume, SpatialBlend, RandomizePitchMinimun, RandomizePitchMaximum);
+                VRUtils.Instance.PlaySpatialClipAt(SoundToPlay, transform.position, 1f, 1f);
             }
 
             base.OnGrab(grabber);
