@@ -54,7 +54,66 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     public bool simulateUserInput = false;
     public string simulatedTranscription = "Hola Robert!";
 
+    public class WebSocketResult
+    {
+        public bool HasToolCall { get; set; }
+        public string ToolName { get; set; }
+        public string CleanMessage { get; set; }
+    }
 
+  public WebSocketResult ProcessMessage(string message)
+    {
+        bool hasToolCall = false;
+        string toolName = string.Empty;
+        List<string> cleanedLines = new List<string>();
+
+        // Separamos el mensaje por líneas.
+        string[] lines = message.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+        int i = 0;
+        while (i < lines.Length)
+        {
+            string trimmedLine = lines[i].Trim();
+
+            // Detecta si la línea es un toolcall simple o inicia un bloque de toolcall en markdown.
+            if (trimmedLine.Equals("toolcall", StringComparison.OrdinalIgnoreCase) ||
+                trimmedLine.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase))
+            {
+                hasToolCall = true;
+                // Si existe la siguiente línea, se asume que contiene el nombre de la función.
+                if (i + 1 < lines.Length)
+                {
+                    toolName = lines[i + 1].Trim();
+                }
+                // Se avanza dos líneas para saltar la línea actual y la del nombre.
+                i += 2;
+
+                // Si se está en un bloque markdown, se salta hasta encontrar la línea de cierre "```".
+                while (i < lines.Length && !lines[i].Trim().Equals("```"))
+                {
+                    i++;
+                }
+                // Si se encontró la línea de cierre, se salta.
+                if (i < lines.Length && lines[i].Trim().Equals("```"))
+                {
+                    i++;
+                }
+                continue;
+            }
+            // Agrega la línea al mensaje "limpio" si no forma parte de un bloque toolcall.
+            cleanedLines.Add(lines[i]);
+            i++;
+        }
+
+        // Se reconstruye el mensaje sin el bloque de toolcall.
+        string cleanedMessage = string.Join(Environment.NewLine, cleanedLines);
+
+        return new WebSocketResult
+        {
+            HasToolCall = hasToolCall,
+            ToolName = toolName,
+            CleanMessage = cleanedMessage
+        };
+    }
     async void Start()
     {
 
@@ -82,18 +141,6 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         if (enableVRInput)
         {
             TryInitializeController();
-        }
-
-        if (imagen){
-            imagen.SetActive(false);
-        }
-
-        if (guia_arrow){
-            guia_arrow.SetActive(false);
-        }
-
-        if (ensenar_mando){
-            ensenar_mando.SetActive(false);
         }
 
         await ConnectToWebSocket();
@@ -126,22 +173,27 @@ public class SpeechAssistantControllerWS : MonoBehaviour
      
             string message = System.Text.Encoding.UTF8.GetString(bytes);
             Debug.Log($"WebSocket message received: {message}");
-            if(message.StartsWith("tool_call")){
-                Debug.Log("Tool call received");
-                if(message == "tool_call:guiar_a_lugar_de_ensayo"){
-                    guia_arrow.SetActive(true);
+            WebSocketResult result = ProcessMessage(message);
+            Debug.LogError("Se detectó toolcall? " + result.HasToolCall);
+            Debug.LogError("ToolName: " + result.ToolName);
+            Debug.LogError("Mensaje limpio:");
+            Debug.LogError(result.CleanMessage);
+            if(result.HasToolCall){
+                if (ToolCallsRepository.Instance != null)
+                {
+                    ToolCallsRepository.Instance.InvokeToolCall(result.ToolName);
                 }
-                else if(message == "tool_call:senalar_boton_mando_coger"){
-                    ensenar_mando.SetActive(true);
+                else    
+                {
+                    Debug.LogWarning("ToolCallsRepository no está inicializado.");
                 }
-                else if(message == "tool_call:mostrar_imagen_pieza"){
-                    imagen.SetActive(true);
-                }
-                Debug.Log(message);
+                ProcessWebSocketResponse(result.CleanMessage);
             }
             else{
                 ProcessWebSocketResponse(message);
             }
+            
+            
 
         };
 
@@ -218,10 +270,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             targetController = devices[0];
             Debug.Log($"Target controller found: {targetController.name}");
         }
-        else
-        {
-            Debug.LogWarning("Target controller not found. Will try again in Update.");
-        }
+
     }
 
 

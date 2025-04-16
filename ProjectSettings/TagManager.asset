@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Grabbable
+  - Hijo
+  - Tutorial
+  - Herramienta
   layers:
   - Default
   - TransparentFX
