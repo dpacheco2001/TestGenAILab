@@ -15,7 +15,15 @@ public class MenuManager : MonoBehaviour
     // Bandera para llevar el estado del menú (visible o no)
     private bool isMenuVisible = false;
     public bool vrenabled = false;
+    private HandlerFlags handlerFlags;
+    private SpeechAssistantControllerWS speechAssistantControllerWS;
 
+    void Start()
+    {
+       
+        handlerFlags = FindFirstObjectByType<HandlerFlags>();
+        speechAssistantControllerWS = FindFirstObjectByType<SpeechAssistantControllerWS>();
+    }
     void Update()
     {
         // Para dispositivos Quest se usa OVRInput. En el editor usamos la barra espaciadora.
@@ -24,6 +32,11 @@ public class MenuManager : MonoBehaviour
         if (menuButton.action.WasPressedThisFrame())
         {
             ToggleMenu();
+            if(handlerFlags.EstadoObjeto("BOTON_MENU")){
+                Debug.Log("Se ha apretado el botón del menú.");
+                speechAssistantControllerWS.SendTranscriptionToWebSocket("*El usuario ha apretado el botón del menú satisfactoriamente*");
+                handlerFlags.MarcarComoDesactivado("BOTON_MENU");
+            }
         }
     
    }

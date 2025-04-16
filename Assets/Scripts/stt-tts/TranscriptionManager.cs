@@ -46,11 +46,12 @@ public class TranscriptionManager : MonoBehaviour
                 
                 // Procesa la respuesta JSON
                 string jsonResponse = www.downloadHandler.text;
-                Debug.Log("Respuesta API: " + jsonResponse);
+                
                 
                 // Extrae el texto de la transcripción del JSON
                 // Formato esperado: {"text":"la transcripción aquí"}
                 TranscriptionResponse response = JsonUtility.FromJson<TranscriptionResponse>(jsonResponse);
+                Debug.Log("Respuesta API: " + response.text);
                 return response.text;
             }
         }

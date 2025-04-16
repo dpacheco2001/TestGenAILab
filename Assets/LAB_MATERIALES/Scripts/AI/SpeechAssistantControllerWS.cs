@@ -40,6 +40,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     private InputDevice targetController;
     private bool wasPressed = false;
     private bool isConnected = false;
+    private bool isFirstMessageSent = false;
 
     public bool streaming = false;
 
@@ -49,6 +50,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     public GameObject ensenar_mando;
 
     public GameObject imagen;
+
+    public bool empezar_con_tutorial = true;
 
     [Header("User Input Simulation")]
     public bool simulateUserInput = false;
@@ -143,6 +146,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             TryInitializeController();
         }
 
+        
         await ConnectToWebSocket();
     }
 
@@ -153,6 +157,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         websocket.OnOpen += () =>
         {
             Debug.Log("WebSocket connection opened");
+
             isConnected = true;
         };
 
@@ -202,7 +207,11 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     }
 
     void Update()
-    {
+    {   
+        if(isConnected && !isFirstMessageSent && empezar_con_tutorial){
+            SendTranscriptionToWebSocket("Hacer una busqueda episodica con query: El usuario me pidio que iniciemos con el tutorial");
+            isFirstMessageSent = true;
+        }
         #if !UNITY_WEBGL || UNITY_EDITOR
 
         if (websocket != null)
@@ -234,6 +243,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
   
             if (buttonPressed && !wasPressed) 
             {
+                Debug.LogError("Entre jaja");
                 wasPressed = true;
                 StartRecording();
             }
@@ -362,22 +372,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         float elapsedSeconds = stopwatch.ElapsedMilliseconds / 1000f;
 
 
-        if (transcriptionText != null)
+        if (transcription != null)
         {
-            if (!string.IsNullOrEmpty(transcription))
+ 
+            if (autoSendTranscription)
             {
-                transcriptionText.text = transcription + $"\n\nTiempo de procesamiento: {elapsedSeconds:F2} segundos";
-                
-
-                if (autoSendTranscription && isConnected)
-                {
-                    SendTranscriptionToWebSocket(transcription);
-                }
+                SendTranscriptionToWebSocket(transcription);
             }
-            else
-            {
-                transcriptionText.text = "Error en la transcripción";
-            }
+  
         }
     }
     
