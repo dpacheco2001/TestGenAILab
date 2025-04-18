@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Grabbable
+  - Hijo
+  - proveta
   layers:
   - Default
   - TransparentFX
