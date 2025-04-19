@@ -8,7 +8,6 @@ using TMPro;
 using UnityEngine.XR;
 using System.Text;
 using NativeWebSocket;
-
 public class SpeechAssistantControllerWS : MonoBehaviour
 {
     [Header("Speech Recognition")]
@@ -54,7 +53,12 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     public bool simulateUserInput = false;
     public string simulatedTranscription = "Hola Robert!";
 
-
+    [Serializable]
+    private class WebSocketResponseData
+    {
+        public string type;
+        public string content;
+    }
     async void Start()
     {
 
@@ -359,14 +363,27 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         await websocket.SendText(jsonMessage);
     }
     
-
+    private string ExtractContentFromResponse(string response)
+    {
+        try
+        {
+            return JsonUtility.FromJson<WebSocketResponseData>(response).content;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error parsing response: {e.Message}");
+            return null;
+        }
+    }
     private void ProcessWebSocketResponse(string response)
     {
         try
         {
-            string assistantResponse = response;
-            
 
+                
+            string assistantResponse = ExtractContentFromResponse(response);
+
+            
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
             {
                 Debug.Log($"Assistant response: {assistantResponse}");
@@ -377,7 +394,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                     assistantResponseText.text = assistantResponse;
                 }
                 
-                if (autoSpeakResponse && textToSpeech != null && !string.IsNullOrEmpty(assistantResponse))
+                if (autoSpeakResponse && textToSpeech != null && !string.IsNullOrEmpty(assistantResponse) && assistantResponse != @"{""type"":""end""}")
                 {
                     SpeakAssistantResponse(assistantResponse);
                 }
