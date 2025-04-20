@@ -5,7 +5,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class ResourceUIManager : MonoBehaviour {
+public class ResourceUIManager : MonoBehaviour
+{
     [Serializable]
     public class ResourceData {
         public string ensayo;
@@ -18,85 +19,86 @@ public class ResourceUIManager : MonoBehaviour {
 
     [Header("Filtros")]
     public TMP_Dropdown ensayoDropdown;
-    public ToggleGroup resourceToggleGroup;
+    public ToggleGroup  resourceToggleGroup;
 
     [Header("ViewerCards")]
-    public Transform viewerCardParent;
-    public GameObject viewerCardPrefab;
+    public Transform    viewerCardParent;
+    public GameObject   viewerCardPrefab;
 
     [Header("Viewport Prefab")]
-    public GameObject viewportPrefab;       // ← Prefab de tu contenido
-    public Transform viewportParent;        // ← Donde se instanciará
-
-    // instancia en ejecución
-    GameObject _viewportInstance;
-    Image    _vpImage;
-    TMP_Text _vpHeader, _vpSubHeader, _vpDescription;
+    public GameObject   viewportPrefab;  // prefab que ahora tiene ViewportContent
+    public Transform    viewportParent;  // dónde colgarás todas las instancias
 
     [Header("Datos")]
     public List<ResourceData> allResources;
 
-    void Start() {
-        // 1) Instanciar dinámicamente el viewport
-        _viewportInstance = Instantiate(viewportPrefab, viewportParent);
-        // 2) Cachear referencias de sus hijos
-        var t = _viewportInstance.transform;
-        _vpImage        = t.Find("Image").GetComponent<Image>();
-        _vpHeader       = t.Find("Header").GetComponent<TMP_Text>();
-        _vpSubHeader    = t.Find("Subheader").GetComponent<TMP_Text>();
-        _vpDescription  = t.Find("Description").GetComponent<TMP_Text>();
+    // Diccionario para asociar data ↔ viewport instance
+    Dictionary<ResourceData, ViewportContent> _viewportMap = new();
 
-        // 3) Suscribirse a filtros
+    void Start()
+    {
+        // Suscribir filtros
         ensayoDropdown.onValueChanged.AddListener(_ => RefreshResources());
-        foreach (var tgl in resourceToggleGroup.GetComponentsInChildren<Toggle>())
-            tgl.onValueChanged.AddListener(on => { if (on) RefreshResources(); });
+        foreach (var t in resourceToggleGroup.GetComponentsInChildren<Toggle>())
+            t.onValueChanged.AddListener(isOn => { if (isOn) RefreshResources(); });
 
-        // 4) Primer poblamiento
+        // Primer poblamiento
         RefreshResources();
     }
 
-    void RefreshResources() {
-        var ensayoTexto = ensayoDropdown.options[ensayoDropdown.value].text;
+    void RefreshResources()
+    {
+        // Limpiar viejas cards
+        foreach (Transform c in viewerCardParent) Destroy(c.gameObject);
+        // Limpiar viejos viewports
+        foreach (var kv in _viewportMap.Values)
+            Destroy(kv.gameObject);
+        _viewportMap.Clear();
+
+        // Filtros actuales
+        var ensayoTexto  = ensayoDropdown.options[ensayoDropdown.value].text;
         var toggleActivo = resourceToggleGroup.ActiveToggles().FirstOrDefault();
-        var toggleName = toggleActivo?.name ?? "Ninguno";
-        Debug.Log($"[UI] Filtro: {ensayoTexto} / {toggleName}");
+        if (toggleActivo == null) return;
+        var tipo = toggleActivo.name;
 
-     
+        // Datos filtrados
         var lista = allResources
-            .Where(r => r.ensayo == ensayoTexto && r.resourceType == toggleName)
+            .Where(r => r.ensayo == ensayoTexto && r.resourceType == tipo)
             .ToList();
-        Debug.Log($"[UI] Repositorios a mostrar: {lista.Count}");
 
-
-        foreach (Transform c in viewerCardParent)
-            Destroy(c.gameObject);
-
-
-        for (int i = 0; i < lista.Count; i++) {
+        // Crear ViewerCards + sus Viewports
+        for (int i = 0; i < lista.Count; i++)
+        {
             var data = lista[i];
-            var go   = Instantiate(viewerCardPrefab, viewerCardParent, false);
-            var card = go.GetComponent<ViewerCard>();
+
+            // 1) Instanciar card
+            var goCard = Instantiate(viewerCardPrefab, viewerCardParent, false);
+            var card   = goCard.GetComponent<ViewerCard>();
             card.Setup(data, OnCardSelected);
+
+            // 2) Instanciar viewport correspondiente pero oculto
+            var goVp = Instantiate(viewportPrefab, viewportParent, false);
+            var vp = goVp.GetComponent<ViewportContent>();
+            vp.Setup(data);
+            goVp.SetActive(false);
+
+            // 3) Guardar en el diccionario
+            _viewportMap[data] = vp;
         }
 
-        if (lista.Count > 0){
-            _viewportInstance.SetActive(true);
+        // Si hay al menos uno, mostrar el primero
+        if (lista.Count > 0)
             OnCardSelected(lista[0]);
-        }
-        else {
-            ClearViewport();
-        }
-            
     }
 
-    void OnCardSelected(ResourceData d) {
-        _vpImage.sprite       = d.thumbnail;
-        _vpHeader.text        = d.header;
-        _vpSubHeader.text     = d.subHeader;
-        _vpDescription.text   = d.description;
-    }
+    void OnCardSelected(ResourceData data)
+    {
+        // Desactivar todos
+        foreach (var vp in _viewportMap.Values)
+            vp.gameObject.SetActive(false);
 
-    void ClearViewport() {
-        _viewportInstance.SetActive(false);
+        // Activar el que corresponde
+        if (_viewportMap.TryGetValue(data, out var vpToShow))
+            vpToShow.gameObject.SetActive(true);
     }
 }

@@ -553,6 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7999636635866109319}
+  - component: {fileID: 6400761833073976752}
   m_Layer: 5
   m_Name: Viewport
   m_TagString: Untagged
@@ -584,6 +585,22 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6400761833073976752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8871252106931002303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe586b09ec509f488c3611c785cefdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 4835682197382235658}
+  header: {fileID: 4735418164017673486}
+  subHeader: {fileID: 8968854561751616895}
+  description: {fileID: 2093828304114400003}
 --- !u!1 &9090629894699682016
 GameObject:
   m_ObjectHideFlags: 0
