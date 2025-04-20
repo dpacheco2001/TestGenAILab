@@ -79,7 +79,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
 
             // Detecta si la línea es un toolcall simple o inicia un bloque de toolcall en markdown.
             if (trimmedLine.Equals("toolcall", StringComparison.OrdinalIgnoreCase) ||
-                trimmedLine.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase))
+                trimmedLine.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase) ||
+                trimmedLine.StartsWith("´´´toolcall", StringComparison.OrdinalIgnoreCase))
             {
                 hasToolCall = true;
                 // Si existe la siguiente línea, se asume que contiene el nombre de la función.
@@ -91,12 +92,12 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 i += 2;
 
                 // Si se está en un bloque markdown, se salta hasta encontrar la línea de cierre "```".
-                while (i < lines.Length && !lines[i].Trim().Equals("```"))
+                while (i < lines.Length && !lines[i].Trim().Equals("```") && !lines[i].Trim().Equals("´´´"))
                 {
                     i++;
                 }
                 // Si se encontró la línea de cierre, se salta.
-                if (i < lines.Length && lines[i].Trim().Equals("```"))
+                if (i < lines.Length && (lines[i].Trim().Equals("```") || lines[i].Trim().Equals("´´´")))
                 {
                     i++;
                 }
@@ -182,7 +183,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             Debug.LogError("Se detectó toolcall? " + result.HasToolCall);
             Debug.LogError("ToolName: " + result.ToolName);
             Debug.LogError("Mensaje limpio:");
-            Debug.LogError(result.CleanMessage);
+             Debug.LogError(result.CleanMessage);
             if(result.HasToolCall){
                 if (ToolCallsRepository.Instance != null)
                 {

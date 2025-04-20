@@ -16,6 +16,10 @@ public class ToolCallsRepository : MonoBehaviour
     public Outline destornillador_0;
     public Outline destornillador_1;
     public Outline destornillador_2;
+    public Outline botellaMicroestructura;
+
+
+    public bool simular_algo=false;
 
     private void Awake()
     {
@@ -38,7 +42,12 @@ public class ToolCallsRepository : MonoBehaviour
         speechAssistantControllerWSS = FindAnyObjectByType<SpeechAssistantControllerWS>();
     }
 
-    
+    void Update()
+    {
+
+    }
+
+
     /// <summary>
     /// Busca e invoca el método que corresponda al toolcall recibido.
     /// </summary>
@@ -79,6 +88,10 @@ public class ToolCallsRepository : MonoBehaviour
         Debug.Log($"Desactivando {nombreObjeto} después de {tiempo} segundos");
         handlerFlags.MarcarComoDesactivado(nombreObjeto);
     }
+
+    private System.Collections.IEnumerator EsperarTiempo( float tiempo){
+        yield return new WaitForSeconds(tiempo);
+    }
     
     private void resaltar_herramientas(){
         Debug.LogError("Ejecutando el tutorial para resaltar herramientas.");
@@ -108,6 +121,11 @@ public class ToolCallsRepository : MonoBehaviour
     }
 
     private void termino_tutorial(){
+        speechAssistantControllerWSS.SendTranscriptionToWebSocket("FINISH_TUTORIAL");
+        EsperarTiempo(10);
+        handlerFlags.ActivarObjeto("VIDEO_PRINCIPAL");
+        EsperarTiempo(235);
+        handlerFlags.MarcarComoDesactivado("VIDEO_PRINCIPAL");
         speechAssistantControllerWSS.SendTranscriptionToWebSocket("*Tutorial terminado. Realizar búsqueda en memoria episodica con query:'Este nodo contiene información de como me comporté cuando el usuario me saluda y recien ha iniciado la experiencia.'");
     }
 
@@ -177,15 +195,18 @@ public class ToolCallsRepository : MonoBehaviour
     private void resaltar_zona_canal_lubricación(){
         Debug.LogError("Resaltando zona del canal de lubricación ");
         handlerFlags.ActivarObjeto("ZONA_CANAL_LUBRICACION");
+        DesactivarDespuesDeTiempo("ZONA_CANAL_LUBRICACION", 20f);
     }
 
     private void mostrar_flecha_zona_rara(){
         Debug.LogError("Mostrando flecha de zona rara.");
         handlerFlags.ActivarObjeto("FLECHA_ZONA_RARA");
+        DesactivarDespuesDeTiempo("FLECHA_ZONA_RARA", 20f);
     }
 
     private void mostrar_botella_reactivo(){
         Debug.LogError("Resaltando botella de reactivo.");
+        botellaMicroestructura.enabled = true;
     }
 
 

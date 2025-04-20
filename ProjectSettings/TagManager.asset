@@ -9,6 +9,7 @@ TagManager:
   - Tutorial
   - Herramienta
   - Cabeza
+  - proveta
   layers:
   - Default
   - TransparentFX
