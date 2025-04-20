@@ -46,7 +46,7 @@ public class ResourceUIManager : MonoBehaviour
         RefreshResources();
     }
 
-    void RefreshResources()
+    public void RefreshResources()
     {
         // Limpiar viejas cards
         foreach (Transform c in viewerCardParent) Destroy(c.gameObject);

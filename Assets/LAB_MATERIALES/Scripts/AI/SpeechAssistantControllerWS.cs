@@ -68,56 +68,79 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     {
         bool hasToolCall = false;
         string toolName = string.Empty;
-        List<string> cleanedLines = new List<string>();
-
-        // Separamos el mensaje por líneas.
-        string[] lines = message.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+        var cleanedLines = new List<string>();
+        var lines = message.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         int i = 0;
+
         while (i < lines.Length)
         {
-            string trimmedLine = lines[i].Trim();
+            string trimmed = lines[i].Trim();
 
-            // Detecta si la línea es un toolcall simple o inicia un bloque de toolcall en markdown.
-            if (trimmedLine.Equals("toolcall", StringComparison.OrdinalIgnoreCase) ||
-                trimmedLine.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase) ||
-                trimmedLine.StartsWith("´´´toolcall", StringComparison.OrdinalIgnoreCase))
+    
+            if (trimmed.Equals("toolcall", StringComparison.OrdinalIgnoreCase) ||
+                trimmed.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase) ||
+                trimmed.StartsWith("´´´toolcall", StringComparison.OrdinalIgnoreCase))
             {
                 hasToolCall = true;
-                // Si existe la siguiente línea, se asume que contiene el nombre de la función.
                 if (i + 1 < lines.Length)
-                {
                     toolName = lines[i + 1].Trim();
-                }
-                // Se avanza dos líneas para saltar la línea actual y la del nombre.
-                i += 2;
 
-                // Si se está en un bloque markdown, se salta hasta encontrar la línea de cierre "```".
-                while (i < lines.Length && !lines[i].Trim().Equals("```") && !lines[i].Trim().Equals("´´´"))
+           
+                i += 2;
+                while (i < lines.Length && 
+                    !lines[i].Trim().Equals("```") && 
+                    !lines[i].Trim().Equals("´´´"))
                 {
                     i++;
                 }
-                // Si se encontró la línea de cierre, se salta.
-                if (i < lines.Length && (lines[i].Trim().Equals("```") || lines[i].Trim().Equals("´´´")))
-                {
-                    i++;
-                }
+                if (i < lines.Length) i++;
                 continue;
             }
-            // Agrega la línea al mensaje "limpio" si no forma parte de un bloque toolcall.
+
+  
+            if (trimmed.StartsWith("```mermaid", StringComparison.OrdinalIgnoreCase) ||
+                trimmed.StartsWith("´´´mermaid",  StringComparison.OrdinalIgnoreCase))
+            {
+
+                string ensayoName = "Recomendaciones Robert"; 
+                var parts = trimmed.Split(new[]{'|'}, 2);
+                if (parts.Length > 1 && !string.IsNullOrWhiteSpace(parts[1]))
+                    ensayoName = parts[1].Trim();
+
+
+                var sb = new StringBuilder();
+                i++;
+                while (i < lines.Length &&
+                    !lines[i].Trim().Equals("```") &&
+                    !lines[i].Trim().Equals("´´´"))
+                {
+                    sb.AppendLine(lines[i]);
+                    i++;
+                }
+
+                if (i < lines.Length) i++;
+
+                Debug.LogError(sb.ToString());
+
+                MermaidRenderer.RenderAndAddToUI(sb.ToString(), ensayoName);
+                continue;
+            }
+
+            // ——— línea normal —————————————————————————
             cleanedLines.Add(lines[i]);
             i++;
         }
 
-        // Se reconstruye el mensaje sin el bloque de toolcall.
         string cleanedMessage = string.Join(Environment.NewLine, cleanedLines);
 
         return new WebSocketResult
         {
-            HasToolCall = hasToolCall,
-            ToolName = toolName,
+            HasToolCall  = hasToolCall,
+            ToolName     = toolName,
             CleanMessage = cleanedMessage
         };
     }
+
     async void Start()
     {
 
