@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.XR;
 using System.Text;
 using NativeWebSocket;
+
 public class SpeechAssistantControllerWS : MonoBehaviour
 {
     [Header("Speech Recognition")]
@@ -18,7 +19,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     public Image volumeIndicator;                      
 
     [Header("WebSocket Settings")]
-    public string webSocketUrl = "ws://localhost:6789"; 
+    public string webSocketUrl = "ws://localhost:6788"; 
     public string studentCode = "20190051";             
     public Text assistantResponseText;                  
     public bool autoSendTranscription = true;           
@@ -41,7 +42,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     private bool isConnected = false;
 
     public bool streaming = false;
-
+    
     [Header("Utils for tools")]
 
     public GameObject guia_arrow;
@@ -52,13 +53,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     [Header("User Input Simulation")]
     public bool simulateUserInput = false;
     public string simulatedTranscription = "Hola Robert!";
-
+    private string transcription = "";
     [Serializable]
     private class WebSocketResponseData
     {
         public string type;
         public string content;
     }
+
     async void Start()
     {
 
@@ -310,7 +312,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             return;
         }
 
-        string transcription = await transcriptionManager.TranscribeAudio(wavData);
+        transcription = await transcriptionManager.TranscribeAudio(wavData);
 
 
         stopwatch.Stop();
@@ -375,15 +377,14 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             return null;
         }
     }
+
     private void ProcessWebSocketResponse(string response)
     {
         try
         {
-
-                
             string assistantResponse = ExtractContentFromResponse(response);
-
             
+
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
             {
                 Debug.Log($"Assistant response: {assistantResponse}");
@@ -393,8 +394,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 {
                     assistantResponseText.text = assistantResponse;
                 }
-                
-                if (autoSpeakResponse && textToSpeech != null && !string.IsNullOrEmpty(assistantResponse) && assistantResponse != @"{""type"":""end""}")
+                String textTranscription = JsonUtility.FromJson<WebSocketMessage>(transcription).message;
+                if (autoSpeakResponse && textToSpeech != null && !string.IsNullOrEmpty(assistantResponse) && assistantResponse != @"{""type"":""end""}" &&  textTranscription != assistantResponse)
                 {
                     SpeakAssistantResponse(assistantResponse);
                 }
@@ -415,13 +416,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             return;
         }
         
-        // Se pasa el texto directamente al método, evitando sobrescribir una variable global.
-        StartCoroutine(SpeakWithDelay(speakDelay, response));
-    }
-        
-    private IEnumerator SpeakWithDelay(float delay, string response)
-    {
-        yield return new WaitForSeconds(delay);
+        // Se pasa el texto directamente al método
         textToSpeech.GenerateSpeechAndSave(response);
     }
     

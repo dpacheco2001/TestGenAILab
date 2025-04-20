@@ -81702,7 +81702,7 @@ MonoBehaviour:
   webSocketUrl: ws://localhost:6788
   studentCode: 20190051
   assistantResponseText: {fileID: 0}
-  autoSendTranscription: 1
+  autoSendTranscription: 0
   textToSpeech: {fileID: 1953278942}
   autoSpeakResponse: 0
   speakDelay: 0.1
