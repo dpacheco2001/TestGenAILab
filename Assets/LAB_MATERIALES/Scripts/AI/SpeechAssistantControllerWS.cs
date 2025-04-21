@@ -51,6 +51,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
 
     public GameObject imagen;
 
+    public ResourceUIManager resourceUIManager;
+
     public bool empezar_con_tutorial = true;
 
     [Header("User Input Simulation")]
@@ -125,6 +127,45 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 MermaidRenderer.RenderAndAddToUI(sb.ToString(), ensayoName);
                 continue;
             }
+
+            if ( trimmed.StartsWith("```videos_encontrados", StringComparison.OrdinalIgnoreCase)
+                || trimmed.StartsWith("´´´videos_encontrados", StringComparison.OrdinalIgnoreCase))
+            {
+   
+            i++;
+
+            string nombre      = null;
+            string descripcion = null;
+            string url         = null;
+            string thumbUrl    = null;
+
+ 
+            while (i < lines.Length &&
+                  !lines[i].Trim().Equals("```") &&
+                  !lines[i].Trim().Equals("´´´"))
+            {
+                var line = lines[i].Trim();
+                if (line.StartsWith("nombre:"))      nombre      = line.Substring(7).Trim();
+                else if (line.StartsWith("descripcion:")) descripcion = line.Substring(12).Trim();
+                else if (line.StartsWith("url:"))         url         = line.Substring(4).Trim();
+                else if (line.StartsWith("thumbnail:"))   thumbUrl    = line.Substring(10).Trim();
+                i++;
+            }
+            if (i < lines.Length) i++;
+
+            resourceUIManager.StartCoroutine(
+                resourceUIManager.AddVideoResource(
+                    nombre,
+                    descripcion,
+                    url,
+                    thumbUrl
+                )
+            );
+            continue;
+            }
+
+
+            
 
             // ——— línea normal —————————————————————————
             cleanedLines.Add(lines[i]);
