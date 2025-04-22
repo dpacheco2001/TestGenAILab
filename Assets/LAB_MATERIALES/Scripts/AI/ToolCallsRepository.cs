@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Reflection;
 using UnityEngine;
 
@@ -208,11 +209,41 @@ public class ToolCallsRepository : MonoBehaviour
         Debug.LogError("Resaltando botella de reactivo.");
         botellaMicroestructura.enabled = true;
     }
-    //
 
+    //UTILS
 
+    private void deseo_ver()
+    {
+        StartCoroutine(deseo_ver_coroutine());
+    }
+    private IEnumerator deseo_ver_coroutine()
+    {
+        Debug.LogError("Mandando imagen...");
+        int width = 512;
+        int height = 512;
+        yield return new WaitForEndOfFrame();
 
+        var rt = new RenderTexture(width, height, 24);
+        Camera.main.targetTexture = rt;
+        Camera.main.Render();
+        RenderTexture.active = rt;
 
+        var tex = new Texture2D(width, height, TextureFormat.RGB24, false);
+        tex.ReadPixels(new Rect(0, 0, width, height), 0, 0);
+        tex.Apply();
+
+        Camera.main.targetTexture = null;
+        RenderTexture.active = null;
+        rt.Release();
+        Destroy(rt);
+
+        byte[] jpg = tex.EncodeToJPG(75);
+        string b64 = Convert.ToBase64String(jpg);
+        string message = "[imagen:" + b64 + "]";
+        speechAssistantControllerWSS.SendTranscriptionToWebSocket(message);
+
+        Destroy(tex);
+    }
 
 
 
