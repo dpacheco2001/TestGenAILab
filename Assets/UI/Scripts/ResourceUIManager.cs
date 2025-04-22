@@ -159,4 +159,36 @@ public class ResourceUIManager : MonoBehaviour
         allResources.Add(rd);
         RefreshResources();
     }
+
+    public IEnumerator AddImageResource(string nombre, string base64Data)
+    {
+        byte[] bytes = Convert.FromBase64String(base64Data);
+
+        var tex = new Texture2D(2, 2);
+        tex.LoadImage(bytes); 
+
+
+        var sprite = Sprite.Create(
+            tex,
+            new Rect(0, 0, tex.width, tex.height),
+            new Vector2(0.5f, 0.5f),
+            100
+        );
+
+        // 4) Construir tu ResourceData
+        var rd = new ResourceData {
+            ensayo       = "Recomendaciones Robert",
+            resourceType = "Fotos", 
+            header       = nombre,
+            subHeader    = "",           
+            description  = "",
+            thumbnail    = sprite,
+            videoUrl     = ""           
+        };
+
+        allResources.Add(rd);
+        RefreshResources();
+
+        yield return null;
+    }
 }

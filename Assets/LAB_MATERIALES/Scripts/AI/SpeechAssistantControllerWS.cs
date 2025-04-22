@@ -164,6 +164,41 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             continue;
             }
 
+            if (trimmed.StartsWith("```images_encontradas", StringComparison.OrdinalIgnoreCase) ||
+            trimmed.StartsWith("´´´images_encontradas", StringComparison.OrdinalIgnoreCase))
+            {
+                i++;
+                // Variables para cada imagen
+                string imgName = null;
+                string imgData = null;
+
+                while (i < lines.Length &&
+                    !lines[i].Trim().Equals("```") &&
+                    !lines[i].Trim().Equals("´´´"))
+                {
+                    var line = lines[i].Trim();
+                    if (line.StartsWith("nombre:"))
+                    {
+                        imgName = line.Substring(7).Trim();
+                    }
+                    else if (line.StartsWith("data:"))
+                    {
+                        imgData = line.Substring(5).Trim();
+                    }
+                    i++;
+                }
+                if (i < lines.Length) i++;
+
+                // Lanza coroutine para reconstruir la textura desde Base64
+                resourceUIManager.StartCoroutine(
+                    resourceUIManager.AddImageResource(
+                        imgName,
+                        imgData
+                    )
+                );
+                continue;
+            }
+
 
             
 
