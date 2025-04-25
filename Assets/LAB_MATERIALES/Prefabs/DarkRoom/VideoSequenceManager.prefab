@@ -556,5 +556,5 @@ MonoBehaviour:
   videoPlayer: {fileID: 2380775648845173948}
   videoSequence:
   - {fileID: 32900000, guid: 9c019aa81c03d1f41850eec33ce040aa, type: 3}
-  - {fileID: 32900000, guid: edbe3fea091af85489548f8d40853c38, type: 3}
+  - {fileID: 0}
   shouldTeleportAndPlay: 0
