@@ -39,7 +39,7 @@ public class ToolCallsRepository : MonoBehaviour
     void Start()
     {
         handlerFlags = FindAnyObjectByType<HandlerFlags>();
-        checkVisibleObjectsHotZone = FindAnyObjectByType<CheckVisibleObjectsHotZone>();
+        //checkVisibleObjectsHotZone = FindAnyObjectByType<CheckVisibleObjectsHotZone>();
         speechAssistantControllerWSS = FindAnyObjectByType<SpeechAssistantControllerWS>();
     }
 
@@ -74,8 +74,8 @@ public class ToolCallsRepository : MonoBehaviour
     {
         Debug.LogError("Ejecutando el tutorial para mover la cabeza.");
         handlerFlags.ActivarObjeto("TUTORIAL_MOVER_CABEZA");
-        checkVisibleObjectsHotZone.enabled = true;
-        checkVisibleObjectsHotZone.showHotZone = true; // Habilitar la visualización de la hotzone
+        // checkVisibleObjectsHotZone.enabled = true;
+        // checkVisibleObjectsHotZone.showHotZone = true; // Habilitar la visualización de la hotzone
     }
 
     private void mostrar_boton_asistente(){
@@ -177,6 +177,16 @@ public class ToolCallsRepository : MonoBehaviour
     private void video_preparacion_pieza_mc(){
         Debug.LogError("Ejecutando el tutorial para mostrar el video de preparación de la pieza.");
         handlerFlags.ActivarObjeto("VIDEO_PREPARACION_PIEZA_MC");
+    }
+
+    private void mostrar_pieza_mitad(){
+        Debug.LogError("Ejecutando el tutorial para mostrar la pieza a la mitad.");
+        handlerFlags.ActivarObjeto("PIEZA_MITAD");
+    }
+
+    private void mostrar_pieza_posprocesada(){
+        Debug.LogError("Ejecutando el tutorial para mostrar la pieza posprocesada.");
+        handlerFlags.ActivarObjeto("PIEZA_POSPROCESADA");
     }
 
     //Mostrar dial aumento en analisis microestrucutral

@@ -64,16 +64,7 @@ public class UnityHttpServer : MonoBehaviour
         // Sólo manejamos solicitudes GET
         if (request.HttpMethod == "GET")
         {
-            // Por ejemplo, respondemos a la ruta "/solicitud"
-            if (request.Url.AbsolutePath == "/verificar_zona_relevante")
-            {
-                myVariable = marker.GetEnclosedObjectsAndClearStrokes();
-                responseString = myVariable;
-            }
-            else
-            {
-                responseString = "Endpoint no encontrado.";
-            }
+
         }
         else
         {
