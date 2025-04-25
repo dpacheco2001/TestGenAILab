@@ -62,14 +62,13 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     public class WebSocketResult
     {
         public bool HasToolCall { get; set; }
-        public string ToolName { get; set; }
+        public List<string> ToolNames { get; set; } = new List<string>();
         public string CleanMessage { get; set; }
     }
 
   public WebSocketResult ProcessMessage(string message)
     {
-        bool hasToolCall = false;
-        string toolName = string.Empty;
+        var result = new WebSocketResult();
         var cleanedLines = new List<string>();
         var lines = message.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
         int i = 0;
@@ -83,9 +82,12 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 trimmed.StartsWith("```toolcall", StringComparison.OrdinalIgnoreCase) ||
                 trimmed.StartsWith("´´´toolcall", StringComparison.OrdinalIgnoreCase))
             {
-                hasToolCall = true;
+                result.HasToolCall = true;
                 if (i + 1 < lines.Length)
-                    toolName = lines[i + 1].Trim();
+                {
+                    string toolName = lines[i + 1].Trim();
+                    result.ToolNames.Add(toolName);
+                }
 
            
                 i += 2;
@@ -207,14 +209,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             i++;
         }
 
-        string cleanedMessage = string.Join(Environment.NewLine, cleanedLines);
-
-        return new WebSocketResult
-        {
-            HasToolCall  = hasToolCall,
-            ToolName     = toolName,
-            CleanMessage = cleanedMessage
-        };
+        result.CleanMessage = string.Join(Environment.NewLine, cleanedLines);
+        return result;
     }
 
     async void Start()
@@ -280,13 +276,16 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             Debug.Log($"WebSocket message received: {message}");
             WebSocketResult result = ProcessMessage(message);
             Debug.LogError("Se detectó toolcall? " + result.HasToolCall);
-            Debug.LogError("ToolName: " + result.ToolName);
+            Debug.LogError("ToolNames: " + string.Join(", ", result.ToolNames));
             Debug.LogError("Mensaje limpio:");
-             Debug.LogError(result.CleanMessage);
+            Debug.LogError(result.CleanMessage);
             if(result.HasToolCall){
                 if (ToolCallsRepository.Instance != null)
                 {
-                    ToolCallsRepository.Instance.InvokeToolCall(result.ToolName);
+                    foreach (var toolName in result.ToolNames)
+                    {
+                        ToolCallsRepository.Instance.InvokeToolCall(toolName);
+                    }
                 }
                 else    
                 {

@@ -257,4 +257,135 @@ public class ToolCallsRepository : MonoBehaviour
 
 
 
+
+    //Dureza
+    private void activar_camino_dureza(){
+        Debug.LogError("Activando camino de dureza.");
+        handlerFlags.ActivarObjeto("GUIA_MD");
+    }
+    
+    private void señalar_posicion_de_muestra_dureza(){
+        Debug.LogError("Señalando posición de muestra de dureza.");
+        handlerFlags.ActivarObjeto("Renderer_Dureza");
+    }
+
+    private void animacion_diales_frontal(){
+        Debug.LogError("Mostrando dureza frontal.");
+        handlerFlags.ActivarObjeto("DIALVICK2");
+        
+    }
+
+    private void animacion_diales_lateral(){
+        Debug.LogError("Mostrando dureza lateral.");
+        handlerFlags.ActivarObjeto("DIALVICK1");
+    }
+
+    private void boton_inicio_dureza(){
+        Debug.LogError("Activando botón de inicio de dureza.");
+        handlerFlags.ActivarObjeto("run");
+        handlerFlags.ActivarObjeto("contador_boton");
+    }
+
+    private void highlight_botones_subir_bajar(){
+        Debug.LogError("Resaltando botones de subir y bajar.");
+        handlerFlags.ActivarObjeto("up");
+        handlerFlags.ActivarObjeto("down");
+        
+    }
+    
+    private void highlight_boton_setear(){
+        Debug.LogError("Resaltando botón de setear.");
+        handlerFlags.ActivarObjeto("save");
+    }
+
+    
+    private void seleccionar_peso(){
+        Debug.LogError("Seleccionando peso.");
+        handlerFlags.ActivarObjeto("peso");
+    }
+    
+    private void highlight_pantalla_resultados(){
+        Debug.LogError("Resaltando pantalla de resultados.");
+        handlerFlags.ActivarObjeto("MonitorLine");
+    }
+
+    // Recibe un string con formato "[nombreObjeto] mensaje a enviar"
+    public void toggle_event(string mensaje){
+        // Extraer el nombre del objeto entre corchetes
+        if (string.IsNullOrEmpty(mensaje) || !mensaje.Contains("[") || !mensaje.Contains("]"))
+            return;
+            
+        int inicioCorchete = mensaje.IndexOf("[");
+        int finCorchete = mensaje.IndexOf("]");
+        
+        if (inicioCorchete >= finCorchete)
+            return;
+            
+        string nombreObjeto = mensaje.Substring(inicioCorchete + 1, finCorchete - inicioCorchete - 1);
+        
+        // Verificar si el objeto está activo
+        if (handlerFlags != null && handlerFlags.EstadoObjeto(nombreObjeto)) {
+            // Extraer el mensaje sin los corchetes para enviarlo
+            string mensajeSinCorchetes = mensaje.Substring(finCorchete + 1).Trim();
+            // Solo enviar el mensaje si el objeto está activo
+            speechAssistantControllerWSS.SendTranscriptionToWebSocket(mensajeSinCorchetes);
+        }
+    }
+
+    private void señalar_posicion_de_muestra_quimica(){
+        Debug.LogError("Señalando posición de muestra química.");
+        handlerFlags.ActivarObjeto("Renderer_Quimico");
+    }   
+    
+    private void activar_camino_quimico(){
+        Debug.LogError("Activando camino de química.");
+        handlerFlags.ActivarObjeto("GUIA_AQ");
+    }
+
+    private void animacion_boton_quimica(){
+        Debug.LogError("Mostrando botón de química.");
+        handlerFlags.ActivarObjeto("BOTONQUIMICA");
+    }
+
+    private void mostrar_ejercicios_quimica(){
+        Debug.LogError("Mostrando ejercicios de química.");
+        handlerFlags.ActivarObjeto("VICKERS_EXERCISE");
+    }   
+
+    private void mostrar_zona_quimica(){
+        Debug.LogError("Mostrando zona de química.");
+        handlerFlags.ActivarObjeto("ZONA_QUIMICA");
+    }
+
+    private void mostrar_zona_dureza(){
+        Debug.LogError("Mostrando zona de corte.");
+        handlerFlags.ActivarObjeto("ZONA_CORTE");
+    }
+
+    private void mostrar_ejercicios_dureza(){
+        Debug.LogError("Mostrando ejercicios de dureza.");
+        handlerFlags.ActivarObjeto("VICKERS_EXERCISE");
+    }
+    
+    // Función para enviar alertas directamente
+    public void enviar_alerta(string mensaje){
+        // Si el mensaje tiene el formato [objeto] mensaje, verificar si el objeto está activo
+        if (!string.IsNullOrEmpty(mensaje) && mensaje.Contains("[") && mensaje.Contains("]")) {
+            int inicioCorchete = mensaje.IndexOf("[");
+            int finCorchete = mensaje.IndexOf("]");
+            
+            if (inicioCorchete < finCorchete) {
+                string nombreObjeto = mensaje.Substring(inicioCorchete + 1, finCorchete - inicioCorchete - 1);
+                string mensajeSinCorchetes = mensaje.Substring(finCorchete + 1).Trim();
+                
+                // Verificar si el objeto está activo
+                if (handlerFlags != null && handlerFlags.EstadoObjeto(nombreObjeto)) {
+                    speechAssistantControllerWSS.SendTranscriptionToWebSocket(mensajeSinCorchetes);
+                }
+            }
+        } else {
+            // Si no tiene formato especial, enviar directamente
+            speechAssistantControllerWSS.SendTranscriptionToWebSocket(mensaje);
+        }
+    }
 }

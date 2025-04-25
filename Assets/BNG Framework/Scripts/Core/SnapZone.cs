@@ -89,6 +89,12 @@ namespace BNG {
         public AudioClip SoundOnSnap;
         public AudioClip SoundOnUnsnap;
 
+        [Header("Simulation")]
+        [Tooltip("Set this to true to simulate an item snap and trigger OnSnapEvent with the provided SimulatedItem")]
+        public bool SimulateSnap = false;
+
+        [Tooltip("The Grabbable to use for simulation when SimulateSnap is true")]
+        public Grabbable SimulatedItem;
 
         [Header("Events")]
         /// <summary>
@@ -142,6 +148,12 @@ namespace BNG {
         void Update() {
 
             ClosestGrabbable = getClosestGrabbable();
+
+            // Simulate snap if requested
+            if (SimulateSnap && SimulatedItem != null) {
+                SimulateItemSnap(SimulatedItem);
+                SimulateSnap = false;
+            }
 
             // Can we grab something
             if (HeldItem == null && ClosestGrabbable != null) {
@@ -526,6 +538,31 @@ namespace BNG {
             heldItemRigid = null;
 
             LastUnsnapTime = Time.time;
+        }
+
+        /// <summary>
+        /// Simulates an item being snapped to this zone and triggers the OnSnapEvent
+        /// </summary>
+        /// <param name="simulatedGrabbable">The Grabbable to use for the simulation</param>
+        public virtual void SimulateItemSnap(Grabbable simulatedGrabbable) {
+            // Call OnSnapEvent with the simulated item
+            if (OnSnapEvent != null) {
+                OnSnapEvent.Invoke(simulatedGrabbable);
+            }
+
+            // Fire Off Events on Grabbable
+            GrabbableEvents[] ge = simulatedGrabbable.GetComponents<GrabbableEvents>();
+            if (ge != null) {
+                for (int x = 0; x < ge.Length; x++) {
+                    ge[x].OnSnapZoneEnter();
+                }
+            }
+
+            if (SoundOnSnap) {
+                VRUtils.Instance.PlaySpatialClipAt(SoundOnSnap, transform.position, 0.75f);
+            }
+
+            LastSnapTime = Time.time;
         }
     }
 }
