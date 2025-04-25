@@ -294,7 +294,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 ProcessWebSocketResponse(result.CleanMessage);
             }
             else{
-                ProcessWebSocketResponse(message);
+                ProcessWebSocketResponse(result.CleanMessage);
             }
             
             
