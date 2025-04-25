@@ -130966,6 +130966,7 @@ MonoBehaviour:
   guia_arrow: {fileID: 1829268631}
   ensenar_mando: {fileID: 1969497495}
   imagen: {fileID: 1317421995}
+  resourceUIManager: {fileID: 0}
   empezar_con_tutorial: 0
   simulateUserInput: 0
   simulatedTranscription: "B\xDASQUEDA NODO EPISODICA: \"El usuario termino el tutorial
@@ -389290,6 +389291,7 @@ MonoBehaviour:
     type: 3}
   viewportPrefab: {fileID: 8871252106931002303, guid: f922aa3a998d11e47a3b08af1ef30737,
     type: 3}
+  videoViewportPrefab: {fileID: 0}
   viewportParent: {fileID: 9185841202728694535}
   allResources:
   - ensayo: "Inspecci\xF3n Visual"
@@ -389298,24 +389300,28 @@ MonoBehaviour:
     subHeader: "Inspecci\xF3n visual"
     description: El estudiante debe llegar al lugar de IV
     thumbnail: {fileID: 21300000, guid: bc970bfbb14adbe4fa7095089c343755, type: 3}
+    videoUrl: 
   - ensayo: "Inspecci\xF3n Visual"
     resourceType: Tareas
     header: Tarea 1
     subHeader: "Inspecci\xF3n Visual"
     description: El estudiante debe agarrar la pieza
     thumbnail: {fileID: 21300000, guid: 2a81187652012a54dbef31597fcfb0ca, type: 3}
+    videoUrl: 
   - ensayo: Dureza
     resourceType: Docs
     header: 'Articulo de Science '
     subHeader: "Dureza-Como usar la m\xE1quina"
     description: "Articulo del a\xF1o X"
     thumbnail: {fileID: 21300000, guid: d01cfa24082596b40beef43a5a7623ef, type: 3}
+    videoUrl: 
   - ensayo: Dureza
     resourceType: Tareas
     header: 'Articulo de Science '
     subHeader: "Dureza-Como usar la m\xE1quina"
     description: "Articulo del a\xF1o X"
     thumbnail: {fileID: 21300000, guid: d01cfa24082596b40beef43a5a7623ef, type: 3}
+    videoUrl: 
 --- !u!1 &6744116731605978134
 GameObject:
   m_ObjectHideFlags: 0
@@ -401759,6 +401765,7 @@ MonoBehaviour:
     type: 3}
   viewportPrefab: {fileID: 8871252106931002303, guid: f922aa3a998d11e47a3b08af1ef30737,
     type: 3}
+  videoViewportPrefab: {fileID: 0}
   viewportParent: {fileID: 9185841202728694535}
   allResources:
   - ensayo: "Inspecci\xF3n Visual"
@@ -401767,18 +401774,21 @@ MonoBehaviour:
     subHeader: "Inspecci\xF3n Visual"
     description: El estudiante debe agarrar la pieza
     thumbnail: {fileID: 21300000, guid: 2a81187652012a54dbef31597fcfb0ca, type: 3}
+    videoUrl: 
   - ensayo: Dureza
     resourceType: Docs
     header: 'Articulo de Science '
     subHeader: "Dureza-Como usar la m\xE1quina"
     description: "Articulo del a\xF1o X"
     thumbnail: {fileID: 21300000, guid: d01cfa24082596b40beef43a5a7623ef, type: 3}
+    videoUrl: 
   - ensayo: Dureza
     resourceType: Tareas
     header: 'Articulo de Science '
     subHeader: "Dureza-Como usar la m\xE1quina"
     description: "Articulo del a\xF1o X"
     thumbnail: {fileID: 21300000, guid: d01cfa24082596b40beef43a5a7623ef, type: 3}
+    videoUrl: 
 --- !u!136 &7098195609873011368
 CapsuleCollider:
   m_ObjectHideFlags: 0
