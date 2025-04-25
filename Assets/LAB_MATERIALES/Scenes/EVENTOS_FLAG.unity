@@ -24425,7 +24425,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d6434aed737eeb045989f1029d34b860,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000084486914
+      value: 0.0026
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d6434aed737eeb045989f1029d34b860,
         type: 3}
@@ -66954,7 +66954,7 @@ Transform:
   m_GameObject: {fileID: 981200125}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.021199984, y: -0.0023000063, z: -0.004179988}
+  m_LocalPosition: {x: 0.021199984, y: -0.0401, z: -0.004179988}
   m_LocalScale: {x: 0.00037955365, y: 0.00034332764, z: 0.001018444}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71047,7 +71047,7 @@ Transform:
   m_GameObject: {fileID: 1027001485}
   serializedVersion: 2
   m_LocalRotation: {x: -0.4948223, y: -0.51189816, z: -0.50489336, w: -0.48805115}
-  m_LocalPosition: {x: -0.3043, y: -0.5446, z: 0.0102}
+  m_LocalPosition: {x: -0.30425, y: -0.5446, z: 0.01368}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -138854,8 +138854,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   createMark: 0
-  baseScale: 0.1
-  heightScale: 0.01
+  baseScale: 0.0001
+  heightScale: 0.00001
 --- !u!4 &2011097855
 Transform:
   m_ObjectHideFlags: 0
@@ -146645,7 +146645,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129431852}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
