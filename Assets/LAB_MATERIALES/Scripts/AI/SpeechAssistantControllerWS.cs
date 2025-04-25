@@ -282,7 +282,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             Debug.LogError("Se detectó toolcall? " + result.HasToolCall);
             Debug.LogError("ToolName: " + result.ToolName);
             Debug.LogError("Mensaje limpio:");
-             Debug.LogError(result.CleanMessage);
+            Debug.LogError(result.CleanMessage);
             if(result.HasToolCall){
                 if (ToolCallsRepository.Instance != null)
                 {
