@@ -18,6 +18,11 @@ public class ToolCallsRepository : MonoBehaviour
     public Outline destornillador_1;
     public Outline destornillador_2;
     public Outline botellaMicroestructura;
+    public TeleporterWithVideoSequence teleportVideo1;
+    public TeleporterWithVideoSequence teleportLlamadaAtencion;
+    public TeleporterWithVideoSequence teleportTerminaExperiencia;
+
+    public GameObject videoJefe;
 
 
     public bool simular_algo=false;
@@ -122,12 +127,7 @@ public class ToolCallsRepository : MonoBehaviour
     }
 
     private void termino_tutorial(){
-        speechAssistantControllerWSS.SendTranscriptionToWebSocket("FINISH_TUTORIAL");
-        EsperarTiempo(10);
-        handlerFlags.ActivarObjeto("VIDEO_PRINCIPAL");
-        EsperarTiempo(235);
-        handlerFlags.MarcarComoDesactivado("VIDEO_PRINCIPAL");
-        speechAssistantControllerWSS.SendTranscriptionToWebSocket("*Tutorial terminado. Realizar búsqueda en memoria episodica con query:'Este nodo contiene información de como me comporté cuando el usuario me saluda y recien ha iniciado la experiencia.'");
+        teleportVideo1.shouldTeleportAndPlay = true;
     }
 
     //Inspección visual
@@ -387,5 +387,22 @@ public class ToolCallsRepository : MonoBehaviour
             // Si no tiene formato especial, enviar directamente
             speechAssistantControllerWSS.SendTranscriptionToWebSocket(mensaje);
         }
+    }
+
+    public void advertencia(){
+        Debug.LogError("Ejecutando llamada de atención.");
+        teleportLlamadaAtencion.shouldTeleportAndPlay = true;
+    }
+
+    public void llamada_jefe(){
+        Debug.LogError("Ejecutando llamada de jefe.");
+        videoJefe.SetActive(true);
+    }
+
+
+
+    public void termina_experiencia(){
+        Debug.LogError("Ejecutando termina experiencia.");
+        teleportTerminaExperiencia.shouldTeleportAndPlay = true;
     }
 }

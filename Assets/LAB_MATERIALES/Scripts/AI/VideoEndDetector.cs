@@ -1,17 +1,31 @@
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.Events;
 
 public class VideoEndDetector : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
+    public UnityEvent onVideoFinished;
 
-    void Start()
+    void Reset()
     {
-        videoPlayer.loopPointReached += OnVideoFinished;
+        videoPlayer = GetComponent<VideoPlayer>();
     }
 
-    void OnVideoFinished(VideoPlayer vp)
+    void OnEnable()
     {
-        Debug.Log("El video ha terminado");
+        if (videoPlayer != null)
+            videoPlayer.loopPointReached += HandleVideoEnd;
+    }
+
+    void OnDisable()
+    {
+        if (videoPlayer != null)
+            videoPlayer.loopPointReached -= HandleVideoEnd;
+    }
+
+    void HandleVideoEnd(VideoPlayer vp)
+    {
+        onVideoFinished.Invoke();
     }
 }
