@@ -31,9 +31,13 @@ public class VickersMachineController : MonoBehaviour
     public float indenterMoveSpeed = 0.5f; // Velocidad del indentador
     
     [Header("Configuración de Peso")]
-    public float weightIncrement = 5f;
+    public float weightIncrement = 0.5f;
     public float maxWeight = 100f;
     public float minWeight = 0f;
+
+    // Rango de dureza deseado
+    private float minHardness = 270f;
+    private float maxHardness = 320f;
 
     private class TestData
     {
@@ -158,13 +162,20 @@ public class VickersMachineController : MonoBehaviour
         TestData newTest = new TestData
         {
             testNumber = currentTestNumber,
-            diameter1 = Random.Range(0.1f, 0.5f),
-            diameter2 = Random.Range(0.1f, 0.5f)
+            weight = selectedWeight
         };
         
-        // Calcular dureza
-        float averageDiameter = (newTest.diameter1 + newTest.diameter2) / 2;
-        newTest.hardness = 1.854f * (selectedWeight / (averageDiameter * averageDiameter));
+        // Generar una dureza aleatoria dentro del rango especificado
+        newTest.hardness = Random.Range(minHardness, maxHardness);
+        
+        // Calcular diámetros a partir de la dureza y el peso
+        // Fórmula inversa: d = sqrt(1.854 * weight / hardness)
+        float requiredDiameter = Mathf.Sqrt(1.854f * selectedWeight / newTest.hardness);
+        
+        // Generar diámetros aleatorios cercanos al requerido para mantener la dureza en el rango
+        float variation = 0.05f * requiredDiameter; // 5% de variación
+        newTest.diameter1 = requiredDiameter + Random.Range(-variation, variation);
+        newTest.diameter2 = 2 * requiredDiameter - newTest.diameter1; // Asegurar que el promedio sea requiredDiameter
         
         testHistory.Add(newTest);
         

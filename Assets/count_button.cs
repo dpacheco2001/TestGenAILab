@@ -30,6 +30,10 @@ public class ButtonCounter
     
     [Tooltip("Componente Text para mostrar el contador (opcional)")]
     public Text counterText;
+    
+    // Bandera para controlar si el evento ya fue disparado
+    [HideInInspector]
+    public bool hasReachedTarget = false;
 }
 
 public class count_button : MonoBehaviour
@@ -76,9 +80,10 @@ public class count_button : MonoBehaviour
         // Invocar el evento de clic
         counter.onButtonClick?.Invoke();
         
-        // Comprobar si se ha alcanzado el objetivo
-        if (counter.currentCount == counter.targetCount)
+        // Comprobar si se ha alcanzado o superado el objetivo y no se ha disparado aún
+        if (counter.currentCount >= counter.targetCount && !counter.hasReachedTarget)
         {
+            counter.hasReachedTarget = true;
             counter.onTargetReached?.Invoke();
         }
     }
@@ -96,6 +101,7 @@ public class count_button : MonoBehaviour
     public void ResetCounter(ButtonCounter counter)
     {
         counter.currentCount = 0;
+        counter.hasReachedTarget = false;
         UpdateCounterText(counter);
     }
     
@@ -118,7 +124,7 @@ public class count_button : MonoBehaviour
     }
     
     // Método para activar/desactivar un contador
-    public void SetCounterActive(int index, bool isActive)
+    public void SetCounterActivecls(int index, bool isActive)
     {
         if (index >= 0 && index < buttonCounters.Count)
         {
