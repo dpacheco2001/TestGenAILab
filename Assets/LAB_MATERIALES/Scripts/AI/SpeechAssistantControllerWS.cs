@@ -8,6 +8,7 @@ using TMPro;
 using UnityEngine.XR;
 using System.Text;
 using NativeWebSocket;
+using System.IO;
 
 public class SpeechAssistantControllerWS : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     [Header("User Input Simulation")]
     public bool simulateUserInput = false;
     public string simulatedTranscription = "Hola Robert!";
+
+    public informe_evaluador informeEvaluador;
 
     public class WebSocketResult
     {
@@ -119,14 +122,16 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                     !lines[i].Trim().Equals("´´´"))
                 {
                     sb.AppendLine(lines[i]);
+                    Debug.Log($"Línea Mermaid: '{lines[i]}'");
                     i++;
                 }
 
                 if (i < lines.Length) i++;
 
-                Debug.LogError(sb.ToString());
+                string mermaidCode = sb.ToString();
+                Debug.Log($"Código Mermaid completo:\n{mermaidCode}");
 
-                MermaidRenderer.RenderAndAddToUI(sb.ToString(), ensayoName);
+                MermaidRenderer.RenderAndAddToUI(mermaidCode, ensayoName);
                 continue;
             }
 
@@ -201,8 +206,35 @@ public class SpeechAssistantControllerWS : MonoBehaviour
                 continue;
             }
 
+            // --- Detección de bloque JSON CALIFICADOR ---
+            if (trimmed.StartsWith("```json_calificador", StringComparison.OrdinalIgnoreCase) ||
+                trimmed.StartsWith("´´´json_calificador", StringComparison.OrdinalIgnoreCase))
+            {
+                var sb = new StringBuilder();
+                i++;
+                while (i < lines.Length &&
+                    !lines[i].Trim().Equals("```") &&
+                    !lines[i].Trim().Equals("´´´"))
+                {
+                    sb.AppendLine(lines[i]);
+                    i++;
+                }
+                if (i < lines.Length) i++;
 
-            
+                string json = sb.ToString();
+                Debug.Log("JSON calificador detectado:\n" + json);
+
+                // Llamar al informe evaluador si está asignado
+                if (informeEvaluador != null)
+                {
+                    // Aseguramos que la llamada sea en el hilo principal
+                    UnityMainThreadDispatcher.Instance().Enqueue(() =>
+                    {
+                        informeEvaluador.MostrarDesdeJson(json);
+                    });
+                }
+                continue;
+            }
 
             // ——— línea normal —————————————————————————
             cleanedLines.Add(lines[i]);
@@ -516,11 +548,38 @@ public class SpeechAssistantControllerWS : MonoBehaviour
         {
             string assistantResponse = response;
             
-
             UnityMainThreadDispatcher.Instance().Enqueue(() =>
             {
                 Debug.Log($"Assistant response: {assistantResponse}");
                 
+                // Detectar si es un JSON de calificador directamente
+                if (assistantResponse.Contains("recomendacion_ubicacion_fractura") && 
+                    assistantResponse.Contains("recomendaciones_generales") && 
+                    assistantResponse.Contains("visto_bueno_robert"))
+                {
+                    Debug.Log("JSON calificador detectado directamente en la respuesta.");
+                    
+                    // Intentar limpiar el JSON si está mezclado con texto
+                    string jsonText = assistantResponse.Trim();
+                    int jsonStart = jsonText.IndexOf('{');
+                    int jsonEnd = jsonText.LastIndexOf('}');
+                    
+                    if (jsonStart >= 0 && jsonEnd > jsonStart)
+                    {
+                        jsonText = jsonText.Substring(jsonStart, jsonEnd - jsonStart + 1);
+                        
+                        // Utilizar el informeEvaluador para mostrar el JSON
+                        if (informeEvaluador != null)
+                        {
+                            informeEvaluador.MostrarDesdeJson(jsonText);
+                            Debug.Log("JSON enviado al informe evaluador: " + jsonText);
+                        }
+                        else
+                        {
+                            Debug.LogError("informeEvaluador no está asignado en el inspector.");
+                        }
+                    }
+                }
 
                 if (assistantResponseText != null)
                 {
@@ -638,3 +697,4 @@ public class UnityMainThreadDispatcher : MonoBehaviour
         }
     }
 }
+

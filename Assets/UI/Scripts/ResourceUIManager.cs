@@ -164,24 +164,33 @@ public class ResourceUIManager : MonoBehaviour
     {
         byte[] bytes = Convert.FromBase64String(base64Data);
 
-        var tex = new Texture2D(2, 2);
+        // Crear una textura con calidad HD
+        var tex = new Texture2D(2, 2, TextureFormat.RGBA32, true);
         tex.LoadImage(bytes); 
+        
+        // Mejorar la calidad de visualización de la textura
+        tex.filterMode = FilterMode.Bilinear;
+        tex.anisoLevel = 9; // Aumentar filtrado anisotrópico para mejor calidad
+        tex.Apply();
 
-
+        // Crear sprite con densidad de píxeles para HD
         var sprite = Sprite.Create(
             tex,
             new Rect(0, 0, tex.width, tex.height),
             new Vector2(0.5f, 0.5f),
-            100
+            // Incrementar pixelsPerUnit para mejor resolución
+            200
         );
 
-        // 4) Construir tu ResourceData
+        // Construir ResourceData con datos sobre la resolución
+        string descripcion = $"Resolución: {tex.width}x{tex.height}";
+        
         var rd = new ResourceData {
             ensayo       = "Recomendaciones Robert",
             resourceType = "Fotos", 
             header       = nombre,
-            subHeader    = "",           
-            description  = "",
+            subHeader    = "Imagen HD",           
+            description  = descripcion,
             thumbnail    = sprite,
             videoUrl     = ""           
         };
