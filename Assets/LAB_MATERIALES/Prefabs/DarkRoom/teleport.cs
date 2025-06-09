@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.Events;
 using System.Collections.Generic;
+using System.Collections;
 
 public class TeleporterWithVideoSequence : MonoBehaviour
 {
@@ -9,7 +10,14 @@ public class TeleporterWithVideoSequence : MonoBehaviour
     public Transform objectToTeleport;
     public Transform playerController;
     public VideoPlayer videoPlayer;
-    public List<VideoClip> videoSequence;
+    public VideoClip singleVideo; // Un solo video en lugar de lista
+    
+    [Header("GameObjects to Toggle")]
+    public GameObject gameObjectToToggle1;
+    public GameObject gameObjectToToggle2;
+    
+    [Header("Timing Settings")]
+    public float videoDelay = 2f; // Delay en segundos antes de reproducir el video
     public bool shouldTeleportAndPlay = false;
     public bool forceReturnAndStop = false;
     public UnityEvent onVideoSequenceFinished;
@@ -60,8 +68,9 @@ public class TeleporterWithVideoSequence : MonoBehaviour
         }
     }
 
-    void TeleportAndPlay()
+    public void TeleportAndPlay()
     {
+        // Guardar posiciones originales si no se han guardado
         if (!hasSavedOriginalState)
         {
             originalPosition = targetTransform.position;
@@ -73,34 +82,48 @@ public class TeleporterWithVideoSequence : MonoBehaviour
             }
             hasSavedOriginalState = true;
         }
+        
+        // Iniciar corrutina para el delay completo (teletransporte + video)
+        StartCoroutine(TeleportAndPlayAfterDelay());
+    }
+    
+    private IEnumerator TeleportAndPlayAfterDelay()
+    {
+        // Esperar el delay antes de hacer CUALQUIER cosa
+        yield return new WaitForSeconds(videoDelay);
+        
+        // Desactivar los GameObjects antes del teletransporte
+        if (gameObjectToToggle1 != null)
+            gameObjectToToggle1.SetActive(false);
+        if (gameObjectToToggle2 != null)
+            gameObjectToToggle2.SetActive(false);
+        
+        // Ahora hacer el teletransporte
         targetTransform.position = destinationPoint.position;
         targetTransform.rotation = destinationPoint.rotation;
         if (hasValidPlayerToTrack)
             playerController.position = destinationPoint.position;
-        currentVideoIndex = 0;
-        if (videoSequence != null && videoSequence.Count > 0)
-            PlayVideo(currentVideoIndex);
+        
         isAtDestination = true;
+        
+        // Y reproducir el video inmediatamente después del teletransporte
+        if (singleVideo != null)
+            PlaySingleVideo();
     }
 
     void OnVideoEnd(VideoPlayer vp)
     {
         if (vp == videoPlayer)
         {
-            currentVideoIndex++;
-            if (videoSequence != null && currentVideoIndex < videoSequence.Count)
-                PlayVideo(currentVideoIndex);
-            else
-            {
-                onVideoSequenceFinished.Invoke();
-                ReturnToOriginalPosition(true);
-            }
+            // Cuando termina el video único, regresar automáticamente
+            onVideoSequenceFinished.Invoke();
+            ReturnToOriginalPosition(true);
         }
     }
 
-    void PlayVideo(int index)
+    void PlaySingleVideo()
     {
-        videoPlayer.clip = videoSequence[index];
+        videoPlayer.clip = singleVideo;
         videoPlayer.Stop();
         videoPlayer.Play();
     }
@@ -112,7 +135,7 @@ public class TeleporterWithVideoSequence : MonoBehaviour
             if (stopVideo && videoPlayer.isPlaying)
             {
                 videoPlayer.Stop();
-                videoPlayer.clip = null;
+                // NO limpiamos el clip para que no se deseleccione
                 onVideoSequenceFinished.Invoke();
             }
             targetTransform.position = originalPosition;
@@ -122,8 +145,20 @@ public class TeleporterWithVideoSequence : MonoBehaviour
                 playerController.position = playerOriginalPosition;
                 playerController.rotation = playerOriginalRotation;
             }
+            
+            // Reactivar los GameObjects cuando se regresa
+            if (gameObjectToToggle1 != null)
+                gameObjectToToggle1.SetActive(true);
+            if (gameObjectToToggle2 != null)
+                gameObjectToToggle2.SetActive(true);
+            
             isAtDestination = false;
-            currentVideoIndex = -1;
         }
+    }
+    
+    // Función sin argumentos para usar en botones de Unity
+    public void ReturnToOriginal()
+    {
+        ReturnToOriginalPosition(true);
     }
 }

@@ -73,3 +73,15 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 /Assets/LAB_MATERIALES/Resources/Videos
+
+# Ignore MP4 video files
+*.mp4
+*.MP4
+
+# Ignore video-related Unity files
+*.mp4.meta
+*.MP4.meta
+*video*.asset
+*video*.asset.meta
+*Video*.asset
+*Video*.asset.meta

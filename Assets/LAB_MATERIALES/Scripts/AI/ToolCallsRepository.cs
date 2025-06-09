@@ -19,6 +19,8 @@ public class ToolCallsRepository : MonoBehaviour
     public Outline destornillador_2;
     public Outline botellaMicroestructura;
     public TeleporterWithVideoSequence teleportVideo1;
+    public TeleporterWithVideoSequence teleportVideo2;
+    public TeleporterWithVideoSequence teleportVideo3;
     public TeleporterWithVideoSequence teleportLlamadaAtencion;
     public TeleporterWithVideoSequence teleportTerminaExperiencia;
 
@@ -26,6 +28,7 @@ public class ToolCallsRepository : MonoBehaviour
 
 
     public bool simular_algo=false;
+    private bool ya_ejecutado = false;
 
     private void Awake()
     {
@@ -50,7 +53,17 @@ public class ToolCallsRepository : MonoBehaviour
 
     void Update()
     {
-
+        if (simular_algo && !ya_ejecutado)
+        {
+            mostrar_video_jefe();
+            ya_ejecutado = true; // Para que no se ejecute más veces
+        }
+        
+        // Si quieres resetear para probar de nuevo
+        if (!simular_algo)
+        {
+            ya_ejecutado = false;
+        }
     }
 
 
@@ -132,8 +145,8 @@ public class ToolCallsRepository : MonoBehaviour
 
     //Inspección visual
     private void guiar_a_inspeccion_visual(){
-        handlerFlags.ActivarObjeto("GUIA_IV");
-        StartCoroutine(DesactivarDespuesDeTiempo("GUIA_IV", 40f));
+        handlerFlags.ActivarObjeto("UbicacionIV");
+        //StartCoroutine(DesactivarDespuesDeTiempo("GUIA_IV", 40f));
     }
 
     //Esto es cuando ya llego
@@ -150,9 +163,26 @@ public class ToolCallsRepository : MonoBehaviour
 
     //El usuario logro agarrar la pieza
 
-    private void mostrar_pizarra(){
+    private void mostrar_pizarra_1(){
         Debug.LogError("Ejecutando el tutorial para mostrar la pizarra.");
-        handlerFlags.ActivarObjeto("PIZARRA");
+        handlerFlags.ActivarObjeto("mostrar_pizarra_1");
+    }
+
+    private void mostrar_pizarra_2(){
+        Debug.LogError("Ejecutando el tutorial para mostrar la pizarra.");
+        handlerFlags.DesactivarObjeto("mostrar_pizarra_1");
+        handlerFlags.ActivarObjeto("mostrar_pizarra_2");
+    }
+
+    private void mostrar_video_jefe(){
+        Debug.LogError("Ejecutando el tutorial para mostrar el video del jefe.");
+        handlerFlags.ActivarObjeto("video1");
+    }
+
+    private void mostrar_pizarra_3(){
+        Debug.LogError("Ejecutando el tutorial para mostrar la pizarra.");
+        handlerFlags.DesactivarObjeto("mostrar_pizarra_2");
+        handlerFlags.ActivarObjeto("mostrar_pizarra_3");
     }
 
     private void mostrar_funcionamiento_plumon(){
@@ -399,7 +429,15 @@ public class ToolCallsRepository : MonoBehaviour
         videoJefe.SetActive(true);
     }
 
+    public void mostrar_video_final(){
+        Debug.LogError("Ejecutando video final.");
+        teleportVideo3.shouldTeleportAndPlay = true;
+    }
 
+    public void mostrar_video_resumen_caso_estudio(){
+        Debug.LogError("Ejecutando video de resumen del caso de estudio.");
+        teleportVideo1.shouldTeleportAndPlay = true;
+    }
 
     public void termina_experiencia(){
         Debug.LogError("Ejecutando termina experiencia.");
