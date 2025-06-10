@@ -185,6 +185,24 @@ public class ToolCallsRepository : MonoBehaviour
         handlerFlags.ActivarObjeto("mostrar_pizarra_3");
     }
 
+    private void mostrar_quiz_1(){
+        Debug.LogError("Ejecutando el tutorial para mostrar el quiz 1.");
+        handlerFlags.DesactivarObjeto("mostrar_pizarra_3");
+        handlerFlags.ActivarObjeto("quiz1");
+    }
+
+    private void mostrar_quiz_2(){
+        Debug.LogError("Ejecutando el tutorial para mostrar el quiz 2.");
+        handlerFlags.DesactivarObjeto("quiz1");
+        handlerFlags.ActivarObjeto("quiz2");
+    }
+
+    private void mostrar_quiz_3(){
+        Debug.LogError("Ejecutando el tutorial para mostrar el quiz 3.");
+        handlerFlags.DesactivarObjeto("quiz2");
+        handlerFlags.ActivarObjeto("quiz3");
+    }
+
     private void mostrar_funcionamiento_plumon(){
         Debug.LogError("Ejecutando el tutorial para mostrar el funcionamiento del plumón.");
         handlerFlags.ActivarObjeto("PLUMON");
@@ -396,6 +414,8 @@ public class ToolCallsRepository : MonoBehaviour
         Debug.LogError("Mostrando ejercicios de dureza.");
         handlerFlags.ActivarObjeto("VICKERS_EXERCISE");
     }
+
+
     
     // Función para enviar alertas directamente
     public void enviar_alerta(string mensaje){
