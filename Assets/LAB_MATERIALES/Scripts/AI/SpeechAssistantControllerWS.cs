@@ -42,6 +42,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
     private bool wasPressed = false;
     private bool isConnected = false;
     private bool isFirstMessageSent = false;
+    private bool autoMessageSent = false;
 
     public bool streaming = false;
 
@@ -58,6 +59,7 @@ public class SpeechAssistantControllerWS : MonoBehaviour
 
     [Header("User Input Simulation")]
     public bool simulateUserInput = false;
+    public bool autoSendOnStart = false;
     public string simulatedTranscription = "Hola Robert!";
 
     public informe_evaluador informeEvaluador;
@@ -343,6 +345,13 @@ public class SpeechAssistantControllerWS : MonoBehaviour
             SendTranscriptionToWebSocket("Hacer una busqueda episodica con query: El usuario me pidio que iniciemos con el tutorial");
             isFirstMessageSent = true;
         }
+
+        // Auto-enviar mensaje simulado al inicio (solo una vez)
+        if(isConnected && !autoMessageSent && autoSendOnStart && !string.IsNullOrEmpty(simulatedTranscription)){
+            SendTranscriptionToWebSocket(simulatedTranscription);
+            autoMessageSent = true;
+        }
+
         #if !UNITY_WEBGL || UNITY_EDITOR
 
         if (websocket != null)

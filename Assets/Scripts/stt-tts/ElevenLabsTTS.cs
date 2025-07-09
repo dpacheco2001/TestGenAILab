@@ -36,6 +36,55 @@ public class ElevenLabsTTS : MonoBehaviour
     void Start()
     {
         Debug.Log("ElevenLabsTTS initialized.");
+        // Limpiar cualquier estado residual al iniciar
+        CleanUpTempFiles();
+        ClearQueue();
+    }
+
+    void OnDestroy()
+    {
+        // Limpiar la cola cuando se destruye el objeto
+        ClearQueue();
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        // Limpiar la cola cuando se pausa la aplicación
+        if (pauseStatus)
+        {
+            ClearQueue();
+        }
+    }
+
+    void OnApplicationFocus(bool hasFocus)
+    {
+        // Limpiar la cola cuando se pierde el foco
+        if (!hasFocus)
+        {
+            ClearQueue();
+        }
+    }
+
+    /// <summary>
+    /// Limpia la cola de solicitudes y resetea el estado de procesamiento.
+    /// También elimina archivos temporales existentes.
+    /// </summary>
+    public void ClearQueue()
+    {
+        requestQueue.Clear();
+        isProcessingRequest = false;
+        CleanUpTempFiles();
+        Debug.Log("Cola de solicitudes TTS limpiada y archivos temporales eliminados.");
+    }
+
+    /// <summary>
+    /// Detiene todas las corrutinas relacionadas con TTS y limpia la cola.
+    /// </summary>
+    public void StopAllTTSProcessing()
+    {
+        StopAllCoroutines();
+        ClearQueue();
+        Debug.Log("Todas las solicitudes TTS detenidas y cola limpiada.");
     }
 
     /// <summary>
@@ -149,5 +198,39 @@ public class ElevenLabsTTS : MonoBehaviour
         } while (File.Exists(filePath));
 
         return filePath;
+    }
+
+    /// <summary>
+    /// Elimina todos los archivos temporales de audio TTS.
+    /// </summary>
+    private void CleanUpTempFiles()
+    {
+        try
+        {
+            string directory = Application.temporaryCachePath;
+            string[] audioFiles = Directory.GetFiles(directory, "tts_audio_*.mp3");
+            
+            foreach (string file in audioFiles)
+            {
+                try
+                {
+                    File.Delete(file);
+                    Debug.Log($"Archivo temporal eliminado: {file}");
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning($"No se pudo eliminar el archivo {file}: {e.Message}");
+                }
+            }
+            
+            if (audioFiles.Length > 0)
+            {
+                Debug.Log($"Se eliminaron {audioFiles.Length} archivos temporales de TTS.");
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"Error al limpiar archivos temporales: {e.Message}");
+        }
     }
 }

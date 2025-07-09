@@ -454,7 +454,7 @@ public class ToolCallsRepository : MonoBehaviour
         teleportVideo3.shouldTeleportAndPlay = true;
     }
 
-    public void mostrar_video_resumen_caso_estudio(){
+    public void mostrar_video_resumen_caso_de_estudio(){
         Debug.LogError("Ejecutando video de resumen del caso de estudio.");
         teleportVideo1.shouldTeleportAndPlay = true;
     }
